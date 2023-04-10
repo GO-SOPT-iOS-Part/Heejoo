@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import Then
+
 import SnapKit
+import Then
 
 final class FirstViewController_2nd_Seminar: UIViewController {
     
@@ -19,16 +20,17 @@ final class FirstViewController_2nd_Seminar: UIViewController {
     }
     
     private lazy var countLabel = UILabel().then {
-        $0.text = "횟수는?"
+        $0.text = "횟수는 ???"
         $0.font = .systemFont(ofSize: 30)
         $0.textColor = .blue
         $0.textAlignment = .center
+        $0.asColor(targetString: "???", color: UIColor.red)
     }
     
     private lazy var nextButton = UIButton().then{
         $0.setTitle("누르러가기!", for: .normal)
         $0.backgroundColor = .systemBlue
-        $0.layer.cornerRadius = 20
+        $0.makeCornerRound(radius : 20)
         $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self,
                      action: #selector(presentButtonTapped),
@@ -39,16 +41,11 @@ final class FirstViewController_2nd_Seminar: UIViewController {
 private extension FirstViewController_2nd_Seminar {
     
     func style() {
-        
         view.backgroundColor = .white
     }
     
     func setLayout() {
-        
-        [countLabel, nextButton].forEach {
-                    $0.translatesAutoresizingMaskIntoConstraints = false
-                    view.addSubview($0)
-                }
+        view.addSubviews(countLabel, nextButton)
         
         countLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -74,18 +71,11 @@ private extension FirstViewController_2nd_Seminar {
     func presentButtonTapped() {
         presentToSecondViewController()
     }
-    
 }
-
 
 extension FirstViewController_2nd_Seminar: DataBindProtocol {
     
     func dataBind(count: Int) {
-        if count > 9 {
-            countLabel.text = "10을 넘었엉 " + String(count) + "번이야 !! "
-        }
-        else {
-            countLabel.text = "조금 더 눌러봥 아직 " + String(count) + "번이야 !!"
-        }
+        self.countLabel.text = (count > 10 ? "10번을 넘었엉 \(count)번이야!!" : "조금 더 눌러봥 아직 \(count)번이야 !!")
     }
 }

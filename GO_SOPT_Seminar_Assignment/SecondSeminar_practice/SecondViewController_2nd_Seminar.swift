@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import Then
+
 import SnapKit
+import Then
 
 protocol DataBindProtocol: AnyObject {
     func dataBind(count: Int)
@@ -15,13 +16,14 @@ protocol DataBindProtocol: AnyObject {
 
 final class SecondViewController_2nd_Seminar: UIViewController {
     
-    var count = 0
+    private var count = 0
     weak var delegate: DataBindProtocol?
     
     private lazy var pushButton = UIButton().then{
         $0.setTitle("눌러줭", for: .normal)
         $0.backgroundColor = .systemBlue
         $0.setTitleColor(.white, for: .normal)
+        $0.makeCornerRound(radius : 20)
         $0.addTarget(self,
                      action: #selector(pushButtonAction),
                      for: .touchUpInside)
@@ -31,7 +33,7 @@ final class SecondViewController_2nd_Seminar: UIViewController {
         $0.setTitle("이전으로!", for: .normal)
         $0.backgroundColor = .systemBlue
         $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 20
+        $0.makeCornerRound(radius : 20)
         $0.addTarget(self,
                      action: #selector(popSecondViewController),
                      for: .touchUpInside)
@@ -49,16 +51,11 @@ final class SecondViewController_2nd_Seminar: UIViewController {
 private extension SecondViewController_2nd_Seminar {
     
     func style() {
-        
         view.backgroundColor = .white
     }
     
     func setLayout() {
-        
-        [pushButton, backButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
+        view.addSubviews(pushButton, backButton)
         
         pushButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -71,18 +68,18 @@ private extension SecondViewController_2nd_Seminar {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(200)
             $0.height.equalTo(50)
-            $0.top.equalTo(pushButton.snp.bottom).offset(50)
+            $0.top.equalTo(pushButton.snp.bottom).offset(40)
         }
     }
     
     @objc
     func pushButtonAction() {
         count += 1
+        delegate?.dataBind(count: count)
     }
     
     @objc
     func popSecondViewController() {
-        delegate?.dataBind(count: count)
         self.dismiss(animated: true)
     }
 }
