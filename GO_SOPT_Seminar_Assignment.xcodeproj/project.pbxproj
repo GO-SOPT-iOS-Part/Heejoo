@@ -26,6 +26,8 @@
 		2A30B5CD29DFCE4D002D6760 /* 거꾸로.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A30B5CB29DFCE4D002D6760 /* 거꾸로.png */; };
 		2A30B5CE29DFCE4D002D6760 /* SOPT_iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A30B5CC29DFCE4D002D6760 /* SOPT_iOS.png */; };
 		2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30B5CF29DFCE90002D6760 /* SecondViewController_1st_Assignment.swift */; };
+		2A92620529E4622D006AC370 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620429E4622D006AC370 /* UITextField+.swift */; };
+		2A92620729E4624C006AC370 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620629E4624C006AC370 /* UIButton+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		2A30B5CB29DFCE4D002D6760 /* 거꾸로.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "거꾸로.png"; sourceTree = "<group>"; };
 		2A30B5CC29DFCE4D002D6760 /* SOPT_iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SOPT_iOS.png; sourceTree = "<group>"; };
 		2A30B5CF29DFCE90002D6760 /* SecondViewController_1st_Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController_1st_Assignment.swift; sourceTree = "<group>"; };
+		2A92620429E4622D006AC370 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		2A92620629E4624C006AC370 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 			children = (
 				2A17590029E3EC870077399D /* UIView+.swift */,
 				2A17590229E4472A0077399D /* UILabel+.swift */,
+				2A92620429E4622D006AC370 /* UITextField+.swift */,
+				2A92620629E4624C006AC370 /* UIButton+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -327,8 +333,10 @@
 				2A17590129E3EC870077399D /* UIView+.swift in Sources */,
 				2A30B59B29DFCDCD002D6760 /* AppDelegate.swift in Sources */,
 				2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */,
+				2A92620529E4622D006AC370 /* UITextField+.swift in Sources */,
 				2A30B59D29DFCDCD002D6760 /* SceneDelegate.swift in Sources */,
 				2A1758FA29E3CF650077399D /* SecondViewController_2nd_Seminar.swift in Sources */,
+				2A92620729E4624C006AC370 /* UIButton+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
