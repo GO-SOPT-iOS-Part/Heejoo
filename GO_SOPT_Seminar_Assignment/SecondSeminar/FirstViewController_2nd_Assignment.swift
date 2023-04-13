@@ -301,10 +301,12 @@ private extension FirstViewController_2nd_Assignment {
             loginButton.backgroundColor = .tvingRed
             loginButton.setTitleColor(.white, for: .normal)
             loginButton.makeBorder(width: 0, color: .tvingGray3)
+            loginButton.isEnabled = true
         } else {
             loginButton.backgroundColor = .black
             loginButton.setTitleColor(.tvingGray3, for: .normal)
             loginButton.makeBorder(width: 1, color: .tvingGray3)
+            loginButton.isEnabled = false
         }
     }
     
