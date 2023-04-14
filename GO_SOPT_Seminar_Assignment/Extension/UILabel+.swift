@@ -15,4 +15,14 @@ extension UILabel {
         attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
         attributedText = attributedString
     }
+    
+    func setLineSpacing(spacing: CGFloat) {
+        guard let text = text else { return }
+        
+        let attrString = NSMutableAttributedString(string: text)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = spacing
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        attributedText = attrString
+    }
 }

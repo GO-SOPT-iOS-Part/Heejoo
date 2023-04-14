@@ -17,24 +17,24 @@ extension String {
     
     func isContainEnglish() -> Bool {
         let pattern = "[A-Za-z]+"
-        guard self.range(of: pattern, options: .regularExpression) != nil else { return false}
+        guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
         return true
     }
     
     func isContainNumber() -> Bool {
         let pattern = ".*[0-9]+.*"
-        guard self.range(of: pattern, options: .regularExpression) != nil else { return false}
+        guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
         return true
     }
     
     func isContainNumberAndAlphabet() -> Bool {
         let pattern = "^[0-9a-zA-Z]*$"
-        guard self.range(of: pattern, options: .regularExpression) != nil else { return false}
+        guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
         return true
     }
     
     func isOnlyKorean() -> Bool {
-        let pattern = "[가-힣]"
+        let pattern = "[가-힣ㄱ-ㅎㅏ-ㅣ]+"
         guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
         return true
     }

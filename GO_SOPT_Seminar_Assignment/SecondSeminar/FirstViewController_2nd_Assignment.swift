@@ -17,20 +17,23 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+        
         style()
         setLayout()
     }
     
     // MARK: - UI Components
     
-    private lazy var loginLabel = UILabel().then{
-        $0.text = "TIVING ID 로그인"
+    private let loginLabel = UILabel().then {
+        $0.text = "TVING ID 로그인"
         $0.font = .tvingMedium(ofSize: 23)
         $0.textColor = .tvingGray
         $0.textAlignment = .center
     }
     
-    private lazy var idTextField = UITextField().then{
+    private lazy var idTextField = UITextField().then {
         $0.placeholder = "아이디"
         $0.font = .tvingSemiBold(ofSize: 15)
         $0.backgroundColor = .tvingGray2
@@ -39,12 +42,9 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
         $0.setLeftPaddingPoints(22)
         $0.setPlaceholderColor(.tvingGray3)
         $0.makeCornerRound(radius: 3)
-        $0.addTarget(self, action: #selector(self.idTextFieldTouchDown), for: .touchDown)
-        $0.addTarget(self, action: #selector(self.idTextFieldChanged), for: .editingChanged)
-        $0.addTarget(self, action: #selector(self.idTextFieldDidEnd), for: .editingDidEnd)
     }
     
-    private lazy var passwordTextField = UITextField().then{
+    private lazy var passwordTextField = UITextField().then {
         $0.placeholder = "비밀번호"
         $0.font = .tvingSemiBold(ofSize: 15)
         $0.isSecureTextEntry = true
@@ -53,24 +53,27 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
         $0.setLeftPaddingPoints(22)
         $0.setPlaceholderColor(.tvingGray3)
         $0.makeCornerRound(radius: 3)
-        $0.addTarget(self, action: #selector(self.passwordTextFieldTouchDown), for: .touchDown)
-        $0.addTarget(self, action: #selector(self.passwordTextFieldChanged), for: .editingChanged)
-        $0.addTarget(self, action: #selector(self.passwordTextFieldDidEnd), for: .editingDidEnd)
     }
     
-    private lazy var deleteIDButton = UIButton().then{
+    private let deleteIDButton = UIButton().then {
+        $0.setImage(UIImage(named: "delete"), for: .normal)
         $0.isEnabled = false
+        $0.isHidden = true
     }
     
-    private lazy var eyeButton = UIButton().then{
+    private let eyeButton = UIButton().then {
+        $0.setImage(UIImage(named: "eye"), for: .normal)
         $0.isEnabled = false
+        $0.isHidden = true
     }
     
-    private lazy var deletePasswordButton = UIButton().then{
+    private let deletePasswordButton = UIButton().then {
+        $0.setImage(UIImage(named: "delete"), for: .normal)
         $0.isEnabled = false
+        $0.isHidden = true
     }
     
-    private lazy var loginButton = UIButton().then{
+    private lazy var loginButton = UIButton().then {
         $0.setTitle("로그인하기", for: .normal)
         $0.backgroundColor = .black
         $0.setTitleColor(.tvingGray3, for: .normal)
@@ -83,7 +86,7 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
                      for: .touchUpInside)
     }
     
-    private lazy var whereIDButton = UIButton().then{
+    private lazy var whereIDButton = UIButton().then {
         $0.setTitle("아이디 찾기", for: .normal)
         $0.backgroundColor = .black
         $0.setTitleColor(.tvingGray3, for: .normal)
@@ -91,7 +94,7 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
         $0.titleLabel?.textAlignment = .center
     }
     
-    private lazy var wherePasswordButton = UIButton().then{
+    private lazy var wherePasswordButton = UIButton().then {
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.backgroundColor = .black
         $0.setTitleColor(.tvingGray3, for: .normal)
@@ -99,18 +102,18 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
         $0.titleLabel?.textAlignment = .center
     }
     
-    private let barLabel = UILabel().then{
+    private let barLabel = UILabel().then {
         $0.text = "|"
         $0.textColor = .tvingGray2
     }
     
-    private let yetLabel = UILabel().then{
+    private let yetLabel = UILabel().then {
         $0.text = "아직 계정이 없으신가요?"
         $0.textColor = .tvingGray4
         $0.font = .tvingSemiBold(ofSize: 14)
     }
     
-    private lazy var makeIDButton = UIButton().then{
+    private lazy var makeIDButton = UIButton().then {
         $0.setTitle("닉네임 만들러가기", for: .normal)
         $0.backgroundColor = .black
         $0.setTitleColor(.tvingGray3, for: .normal)
@@ -122,11 +125,11 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
                      for: .touchUpInside)
     }
     
-    private lazy var backButton = UIButton().then{
+    private lazy var backButton = UIButton().then {
         $0.setImage(UIImage(named: "arrow"), for: .normal)
     }
     
-    private lazy var nicknameTextField = UITextField().then{
+    private lazy var nicknameTextField = UITextField().then {
         $0.text = ""
     }
 }
@@ -141,31 +144,32 @@ private extension FirstViewController_2nd_Assignment {
     
     func setLayout() {
         view.addSubviews(
-                loginLabel,
-                idTextField,
-                passwordTextField,
-                eyeButton,
-                deleteIDButton,
-                deletePasswordButton,
-                loginButton,
-                whereIDButton,
-                wherePasswordButton,
-                barLabel,
-                yetLabel,
-                makeIDButton,
-                backButton
+            loginLabel,
+            idTextField,
+            passwordTextField,
+            eyeButton,
+            deleteIDButton,
+            deletePasswordButton,
+            loginButton,
+            whereIDButton,
+            wherePasswordButton,
+            barLabel,
+            yetLabel,
+            makeIDButton,
+            backButton
         )
         
         loginLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(90)
+            $0.top.equalToSuperview().inset(90)
         }
         
         idTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loginLabel.snp.bottom).offset(31)
             $0.height.equalTo(52)
-            $0.width.equalTo(335)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         
         deleteIDButton.snp.makeConstraints {
@@ -178,7 +182,8 @@ private extension FirstViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(idTextField.snp.bottom).offset(7)
             $0.height.equalTo(52)
-            $0.width.equalTo(335)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         
         eyeButton.snp.makeConstraints {
@@ -197,16 +202,17 @@ private extension FirstViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(passwordTextField.snp.bottom).offset(21)
             $0.height.equalTo(52)
-            $0.width.equalTo(335)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         
         whereIDButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(373)
+            $0.top.equalToSuperview().inset(373)
             $0.leading.equalTo(85)
         }
         
         wherePasswordButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(373)
+            $0.top.equalToSuperview().inset(373)
             $0.leading.equalTo(whereIDButton.snp.trailing).offset(80)
         }
         
@@ -216,105 +222,80 @@ private extension FirstViewController_2nd_Assignment {
         }
         
         yetLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(423)
+            $0.top.equalToSuperview().inset(423)
             $0.leading.equalToSuperview().offset(51)
         }
         
         makeIDButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(423)
+            $0.top.equalToSuperview().inset(423)
             $0.centerY.equalTo(yetLabel.snp.centerY)
             $0.leading.equalTo(yetLabel.snp.trailing).offset(42)
         }
         
         backButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(65)
+            $0.top.equalToSuperview().inset(65)
             $0.leading.equalToSuperview().offset(19)
             $0.height.equalTo(15)
             $0.width.equalTo(8)
         }
     }
     
-    // MARK: - idTextField 이벤트감지함수
+    // MARK: - 로그인 가능 조건
     
-    @objc
-    func idTextFieldTouchDown() {
-        idTextField.makeBorder(width : 1, color : .tvingGray3)
-        deleteIDButton.isHidden = false
-        deleteIDButton.isEnabled = true
-        deleteIDButton.setImage(UIImage(named: "delete"), for: .normal)
-        deleteIDButton.addTarget(self, action: #selector(deleteIdButtonTapped), for: .touchUpInside)
+    func canLogin() {
+        let tOrf = idTextField.hasText && passwordTextField.hasText
+        updateLoginButton(willActive: tOrf)
     }
     
-    @objc
-    func idTextFieldChanged() {
-        if !(self.idTextField.text?.isEmpty ?? true)
-            && !(self.passwordTextField.text?.isEmpty ?? true) {
-            updateLoginButton(willActive: true)
-        }
-        else {
-            updateLoginButton(willActive: false)
-        }
-    }
-    
-    @objc
-    func idTextFieldDidEnd() {
-        idTextField.makeBorder(width: 0, color: .tvingGray3)
-        deleteIDButton.isHidden = true
-    }
-    
-    // MARK: - passwordTextField 이벤트감지함수
-    
-    @objc
-    func passwordTextFieldTouchDown() {
-        passwordTextField.makeBorder(width : 1, color : .tvingGray3)
-        eyeButton.isHidden = false
-        eyeButton.isEnabled = true
-        eyeButton.addTarget(self, action: #selector(eyeButtonTapped), for: .touchUpInside)
-        eyeButton.setImage(UIImage(named: "eye"), for: .normal)
-        deletePasswordButton.isHidden = false
-        deletePasswordButton.isEnabled = true
-        deletePasswordButton.addTarget(self, action: #selector(deletePasswordButtonTapped), for: .touchUpInside)
-        deletePasswordButton.setImage(UIImage(named: "delete"), for: .normal)
-    }
-    
-    @objc
-    func passwordTextFieldChanged() {
-        if !(self.idTextField.text?.isEmpty ?? true)
-            && !(self.passwordTextField.text?.isEmpty ?? true) {
-            updateLoginButton(willActive: true)
-        } else {
-            updateLoginButton(willActive: false)
-        }
-    }
-    
-    @objc
-    func passwordTextFieldDidEnd() {
-        passwordTextField.makeBorder(width: 0, color: .tvingGray3)
-        deletePasswordButton.isHidden = true
-        eyeButton.isHidden = true
-    }
-    
-    // MARK: - 로그인버튼이 활성화될 조건
+    // MARK: - 로그인버튼 활성화 or 비활성화
     
     func updateLoginButton(willActive: Bool) {
-        if (willActive == true) {
-            loginButton.backgroundColor = .tvingRed
+        if willActive {
+            setLoginButton(color: .tvingRed, width: 0, tOrf: true)
             loginButton.setTitleColor(.white, for: .normal)
-            loginButton.makeBorder(width: 0, color: .tvingGray3)
-            loginButton.isEnabled = true
         } else {
-            loginButton.backgroundColor = .black
+            setLoginButton(color: .black, width: 1, tOrf: false)
             loginButton.setTitleColor(.tvingGray3, for: .normal)
-            loginButton.makeBorder(width: 1, color: .tvingGray3)
-            loginButton.isEnabled = false
         }
+    }
+    
+    // MARK: - 로그인버튼 활성화 or 비활성화일 때 특성 주는 함수
+    
+    func setLoginButton(color: UIColor, width: CGFloat, tOrf: Bool) {
+        loginButton.backgroundColor = color
+        loginButton.makeBorder(width: width, color: .tvingGray3)
+        loginButton.isEnabled = tOrf
     }
     
     // MARK: - eyeButton & deleteButton
     
+    func whenIdInput() {
+        eyeButton.isHidden = true
+        eyeButton.isEnabled = false
+        deletePasswordButton.isHidden = true
+        deletePasswordButton.isEnabled = false
+        
+        deleteIDButton.isHidden = false
+        deleteIDButton.isEnabled = true
+        deleteIDButton.addTarget(self, action: #selector(deleteIdButtonTapped), for: .touchUpInside)
+    }
+    
+    func whenPasswordInput() {
+        deleteIDButton.isHidden = true
+        deleteIDButton.isEnabled = false
+
+        eyeButton.isHidden = false
+        eyeButton.isEnabled = true
+        eyeButton.addTarget(self, action: #selector(eyeButtonTapped), for: .touchUpInside)
+        
+        deletePasswordButton.isHidden = false
+        deletePasswordButton.isEnabled = true
+        deletePasswordButton.addTarget(self, action: #selector(deletePasswordButtonTapped), for: .touchUpInside)
+    }
+    
     @objc
     func eyeButtonTapped() {
-        if (passwordTextField.isSecureTextEntry == true) {
+        if passwordTextField.isSecureTextEntry {
             passwordTextField.isSecureTextEntry = false
         } else {
             passwordTextField.isSecureTextEntry = true
@@ -324,11 +305,13 @@ private extension FirstViewController_2nd_Assignment {
     @objc
     func deleteIdButtonTapped() {
         idTextField.text = ""
+        canLogin()
     }
     
     @objc
     func deletePasswordButtonTapped() {
         passwordTextField.text = ""
+        canLogin()
     }
     
     // MARK: - login 버튼 눌렀을 때
@@ -345,7 +328,7 @@ private extension FirstViewController_2nd_Assignment {
         self.present(ThirdViewController, animated: true)
         passwordTextField.makeBorder(width: 0, color: .tvingGray3)
     }
-
+    
     // MARK: - nickname 버튼 눌렀을 때
     
     @objc
@@ -368,5 +351,30 @@ extension FirstViewController_2nd_Assignment: SecurityProtocol {
     
     func nicknameData(text: String) {
         nicknameTextField.text = text
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension FirstViewController_2nd_Assignment: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.makeBorder(width : 1, color : .tvingGray3)
+        canLogin()
+        if textField == idTextField {
+            whenIdInput()
+        } else {
+            whenPasswordInput()
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        canLogin()
+        return true
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.makeBorder(width: 0, color: .tvingGray3)
+        canLogin()
     }
 }

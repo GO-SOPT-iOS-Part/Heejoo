@@ -18,7 +18,7 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         idData()
         style()
         setLayout()
@@ -26,16 +26,16 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
     
     // MARK: - UI Components
     
-    private let tvingImage = UIImageView().then{
+    private let tvingImage = UIImageView().then {
         $0.image = UIImage(named: "image.png")
     }
     
-    private lazy var welcomeLabel = UILabel().then{
+    private lazy var welcomeLabel = UILabel().then {
         $0.font = .tvingBold(ofSize: 23)
         $0.textColor = .white
     }
     
-    private lazy var mainButton = UIButton().then{
+    private lazy var mainButton = UIButton().then {
         $0.setTitle("메인으로", for: .normal)
         $0.backgroundColor = .tvingRed
         $0.setTitleColor(.white, for: .normal)
@@ -49,11 +49,7 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
     func idData() {
         welcomeLabel.text = text! + " 님\n반가워요!"
         welcomeLabel.numberOfLines = 2
-        let attrString = NSMutableAttributedString(string: welcomeLabel.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.33
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
-        welcomeLabel.attributedText = attrString
+        welcomeLabel.setLineSpacing(spacing: 1.33)
         welcomeLabel.textAlignment = .center
     }
 }
@@ -72,8 +68,9 @@ private extension ThirdViewController_2nd_Assignment {
         tvingImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(58)
-            $0.width.equalTo(375)
             $0.height.equalTo(210.94)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
         
         welcomeLabel.snp.makeConstraints {
@@ -85,7 +82,8 @@ private extension ThirdViewController_2nd_Assignment {
             $0.bottom.equalToSuperview().offset(-66)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(52)
-            $0.width.equalTo(335)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
     }
 }
