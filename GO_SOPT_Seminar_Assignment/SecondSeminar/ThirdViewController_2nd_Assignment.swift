@@ -69,8 +69,7 @@ private extension ThirdViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(58)
             $0.height.equalTo(210.94)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         welcomeLabel.snp.makeConstraints {
@@ -82,8 +81,7 @@ private extension ThirdViewController_2nd_Assignment {
             $0.bottom.equalToSuperview().offset(-66)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(52)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
 }

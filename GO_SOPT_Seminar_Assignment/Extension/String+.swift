@@ -15,6 +15,12 @@ extension String {
         return emailTest.evaluate(with: self)
     }
     
+    func isValidPassword() -> Bool {
+        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,20}"
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
+        return passwordTest.evaluate(with: self)
+    }
+    
     func isContainEnglish() -> Bool {
         let pattern = "[A-Za-z]+"
         guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
@@ -34,7 +40,7 @@ extension String {
     }
     
     func isOnlyKorean() -> Bool {
-        let pattern = "[가-힣ㄱ-ㅎㅏ-ㅣ]+"
+        let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣]*$"
         guard self.range(of: pattern, options: .regularExpression) != nil else { return false }
         return true
     }

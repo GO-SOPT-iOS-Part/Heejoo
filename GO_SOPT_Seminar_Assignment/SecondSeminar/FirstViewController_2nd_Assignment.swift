@@ -17,9 +17,7 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        idTextField.delegate = self
-        passwordTextField.delegate = self
-        
+        setDelegate()
         style()
         setLayout()
     }
@@ -168,8 +166,7 @@ private extension FirstViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loginLabel.snp.bottom).offset(31)
             $0.height.equalTo(52)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         deleteIDButton.snp.makeConstraints {
@@ -182,8 +179,7 @@ private extension FirstViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(idTextField.snp.bottom).offset(7)
             $0.height.equalTo(52)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         eyeButton.snp.makeConstraints {
@@ -202,8 +198,7 @@ private extension FirstViewController_2nd_Assignment {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(passwordTextField.snp.bottom).offset(21)
             $0.height.equalTo(52)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         whereIDButton.snp.makeConstraints {
@@ -240,10 +235,17 @@ private extension FirstViewController_2nd_Assignment {
         }
     }
     
+    // MARK: - setDelegate()
+    
+    func setDelegate() {
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
     // MARK: - 로그인 가능 조건
     
     func canLogin() {
-        let tOrf = idTextField.hasText && passwordTextField.hasText
+        let tOrf = idTextField.hasText && passwordTextField.hasText && idTextField.text!.isValidEmail() && passwordTextField.text!.isValidPassword()
         updateLoginButton(willActive: tOrf)
     }
     
@@ -295,10 +297,11 @@ private extension FirstViewController_2nd_Assignment {
     
     @objc
     func eyeButtonTapped() {
+        passwordTextField.isSecureTextEntry.toggle()
         if passwordTextField.isSecureTextEntry {
-            passwordTextField.isSecureTextEntry = false
+            eyeButton.setImage(UIImage(named: "eye"), for: .normal)
         } else {
-            passwordTextField.isSecureTextEntry = true
+            eyeButton.setImage(UIImage(named: "eye2"), for: .normal)
         }
     }
     
@@ -335,13 +338,10 @@ private extension FirstViewController_2nd_Assignment {
     func nicknameButtonTapped() {
         let secondViewController = SecondViewController_2nd_Assignment()
         secondViewController.delegate = self
-        secondViewController.modalPresentationStyle = .pageSheet
-        if let sheet = secondViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.delegate = self
-            sheet.prefersGrabberVisible = true
+        secondViewController.modalPresentationStyle = .overCurrentContext
+        self.present(secondViewController, animated: true) {
+            secondViewController.presentBottomSheet(height: UIScreen.main.bounds.height * 0.5)
         }
-        present(secondViewController, animated: true)
     }
 }
 
