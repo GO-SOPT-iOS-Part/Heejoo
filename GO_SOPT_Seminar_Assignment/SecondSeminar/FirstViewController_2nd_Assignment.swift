@@ -22,6 +22,11 @@ final class FirstViewController_2nd_Assignment: UIViewController {
         setLayout()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         initElement()
     }
@@ -250,6 +255,9 @@ private extension FirstViewController_2nd_Assignment {
     func initElement() {
         idTextField.text = ""
         passwordTextField.text = ""
+        deleteIDButton.isHidden = true
+        deletePasswordButton.isHidden = true
+        eyeButton.isHidden = true
         updateLoginButton(willActive: false)
     }
     
@@ -296,7 +304,7 @@ private extension FirstViewController_2nd_Assignment {
     func whenPasswordInput() {
         deleteIDButton.isHidden = true
         deleteIDButton.isEnabled = false
-
+        
         eyeButton.isHidden = false
         eyeButton.isEnabled = true
         eyeButton.addTarget(self, action: #selector(eyeButtonTapped), for: .touchUpInside)
