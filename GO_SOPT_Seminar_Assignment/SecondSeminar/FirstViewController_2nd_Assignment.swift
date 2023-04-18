@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresentationControllerDelegate {
+final class FirstViewController_2nd_Assignment: UIViewController {
     
     //MARK: - Life Cycle
     
@@ -20,6 +20,10 @@ final class FirstViewController_2nd_Assignment: UIViewController, UISheetPresent
         setDelegate()
         style()
         setLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initElement()
     }
     
     // MARK: - UI Components
@@ -242,6 +246,13 @@ private extension FirstViewController_2nd_Assignment {
         passwordTextField.delegate = self
     }
     
+    // MARK: - 화면전환시 뷰 초기화
+    func initElement() {
+        idTextField.text = ""
+        passwordTextField.text = ""
+        updateLoginButton(willActive: false)
+    }
+    
     // MARK: - 로그인 가능 조건
     
     func canLogin() {
@@ -325,11 +336,9 @@ private extension FirstViewController_2nd_Assignment {
         if (self.nicknameTextField.text?.isEmpty ?? true) {
             text = idTextField.text
         }
-        let ThirdViewController = ThirdViewController_2nd_Assignment()
-        ThirdViewController.text = text
-        ThirdViewController.modalPresentationStyle = .fullScreen
-        self.present(ThirdViewController, animated: true)
-        passwordTextField.makeBorder(width: 0, color: .tvingGray3)
+        let thirdViewController = ThirdViewController_2nd_Assignment()
+        thirdViewController.text = text
+        self.navigationController?.pushViewController(thirdViewController, animated: true)
     }
     
     // MARK: - nickname 버튼 눌렀을 때
@@ -359,7 +368,6 @@ extension FirstViewController_2nd_Assignment: SecurityProtocol {
 extension FirstViewController_2nd_Assignment: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.makeBorder(width : 1, color : .tvingGray3)
-        canLogin()
         if textField == idTextField {
             whenIdInput()
         } else {
@@ -372,9 +380,7 @@ extension FirstViewController_2nd_Assignment: UITextFieldDelegate {
         return true
     }
     
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.makeBorder(width: 0, color: .tvingGray3)
-        canLogin()
     }
 }

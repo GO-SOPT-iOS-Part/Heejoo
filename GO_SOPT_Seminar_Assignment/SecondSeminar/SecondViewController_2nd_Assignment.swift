@@ -76,8 +76,8 @@ final class SecondViewController_2nd_Assignment: UIViewController {
         $0.titleLabel?.font = .tvingSemiBold(ofSize: 14)
         $0.titleLabel?.textAlignment = .center
         $0.isEnabled = false
-        $0.setTitleColor(UIColor.tvingGray3, for: .normal)
-        $0.makeBorder(width: 1, color: .tvingGray3)
+        $0.backgroundColor = .black
+        $0.setTitleColor(.tvingGray3, for: .normal)
         $0.makeCornerRound(radius: 12)
         $0.addTarget(self, action: #selector(saveButtonTapped),
                      for: .touchUpInside)
@@ -169,16 +169,14 @@ private extension SecondViewController_2nd_Assignment {
         saveButton.isEnabled = true
         saveButton.backgroundColor = .tvingRed
         saveButton.setTitleColor(.white, for: .normal)
-        saveButton.makeBorder(width: 0, color: .tvingGray3)
     }
     
     // MARK: - 저장 버튼 비활성화
     
     func saveButtonDisabled() {
         saveButton.isEnabled = false
-        saveButton.backgroundColor = UIColor.white
+        saveButton.backgroundColor = .black
         saveButton.setTitleColor(UIColor.tvingGray3, for: .normal)
-        saveButton.makeBorder(width: 1, color: .tvingGray3)
     }
     
     // MARK: - 저장하기 버튼 눌렀을 때 닉네임 데이터 넘겨주기
@@ -213,7 +211,7 @@ extension SecondViewController_2nd_Assignment: UITextFieldDelegate {
         let currentText = textField.text ?? ""
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
-        if currentText.isOnlyKorean() {
+        if currentText.isOnlyKorean() && textField.hasText {
             if updatedText.isEmpty {
                 saveButtonDisabled()
             } else {

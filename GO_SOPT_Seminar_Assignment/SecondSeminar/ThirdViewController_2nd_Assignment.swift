@@ -13,12 +13,13 @@ import Then
 final class ThirdViewController_2nd_Assignment: UIViewController {
     
     public var text: String?
-
+    
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        setInit()
         idData()
         style()
         setLayout()
@@ -42,6 +43,9 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
         $0.titleLabel?.font = .tvingSemiBold(ofSize: 14)
         $0.titleLabel?.textAlignment = .center
         $0.makeCornerRound(radius: 3)
+        $0.addTarget(self,
+                      action: #selector(mainButtonTapped),
+                      for: .touchUpInside)
     }
     
     // MARK: - 아이디 데이터 받아오기
@@ -57,7 +61,7 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
 private extension ThirdViewController_2nd_Assignment {
     
     // MARK: - style & layout
-
+    
     func style() {
         view.backgroundColor = .black
     }
@@ -83,5 +87,18 @@ private extension ThirdViewController_2nd_Assignment {
             $0.height.equalTo(52)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
+    }
+    
+    // MARK: - 화면전환될 때 back 버튼 가리기
+    
+    func setInit() {
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    // MARK: - pop()
+    
+    @objc
+    func mainButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
