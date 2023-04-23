@@ -12,7 +12,7 @@ import Then
 
 final class ThirdViewController_2nd_Assignment: UIViewController {
     
-    public var text: String?
+    var text: String?
     
     // MARK: - Life Cycle
     
@@ -34,6 +34,9 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
     private lazy var welcomeLabel = UILabel().then {
         $0.font = .tvingBold(ofSize: 23)
         $0.textColor = .white
+        $0.numberOfLines = 2
+        $0.setLineSpacing(spacing: 1.33)
+        $0.textAlignment = .center
     }
     
     private lazy var mainButton = UIButton().then {
@@ -52,9 +55,6 @@ final class ThirdViewController_2nd_Assignment: UIViewController {
     
     func idData() {
         welcomeLabel.text = text! + " 님\n반가워요!"
-        welcomeLabel.numberOfLines = 2
-        welcomeLabel.setLineSpacing(spacing: 1.33)
-        welcomeLabel.textAlignment = .center
     }
 }
 
