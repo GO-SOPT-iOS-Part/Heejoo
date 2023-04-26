@@ -28,6 +28,11 @@
 		2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30B5CF29DFCE90002D6760 /* SecondViewController_1st_Assignment.swift */; };
 		2A92620529E4622D006AC370 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620429E4622D006AC370 /* UITextField+.swift */; };
 		2A92620729E4624C006AC370 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620629E4624C006AC370 /* UIButton+.swift */; };
+		2AD4367429F6A73F0088F2E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367329F6A73F0088F2E5 /* MainViewController.swift */; };
+		2AD4367629F8CF0E0088F2E5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367529F8CF0E0088F2E5 /* BaseView.swift */; };
+		2AD4367829F8CF380088F2E5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367729F8CF380088F2E5 /* BaseViewController.swift */; };
+		2AD4367A29F8D57C0088F2E5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367929F8D57C0088F2E5 /* MainView.swift */; };
+		2AD4367C29F8DCE30088F2E5 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367B29F8DCE30088F2E5 /* MyPageViewController.swift */; };
 		2AFBBDF029E5940100A4245E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBBDEF29E5940100A4245E /* UIColor+.swift */; };
 		2AFBBDF229E5948C00A4245E /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBBDF129E5948C00A4245E /* UIFont+.swift */; };
 		2AFBBDF729E5AD4C00A4245E /* FirstViewController_2nd_Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBBDF629E5AD4C00A4245E /* FirstViewController_2nd_Assignment.swift */; };
@@ -86,6 +91,11 @@
 		2A30B5CF29DFCE90002D6760 /* SecondViewController_1st_Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController_1st_Assignment.swift; sourceTree = "<group>"; };
 		2A92620429E4622D006AC370 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		2A92620629E4624C006AC370 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		2AD4367329F6A73F0088F2E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2AD4367529F8CF0E0088F2E5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		2AD4367729F8CF380088F2E5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2AD4367929F8D57C0088F2E5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2AD4367B29F8DCE30088F2E5 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		2AFBBDEF29E5940100A4245E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		2AFBBDF129E5948C00A4245E /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		2AFBBDF629E5AD4C00A4245E /* FirstViewController_2nd_Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController_2nd_Assignment.swift; sourceTree = "<group>"; };
@@ -183,6 +193,7 @@
 				2A30B5CA29DFCE2E002D6760 /* FirstSeminar */,
 				2A1758ED29E3CE0F0077399D /* SecondSeminar_practice */,
 				2A92620929E4637E006AC370 /* SecondSeminar */,
+				2AD4367229F6A7060088F2E5 /* ThirdSeminar */,
 				2A30B59C29DFCDCD002D6760 /* SceneDelegate.swift */,
 				2A30B59A29DFCDCD002D6760 /* AppDelegate.swift */,
 				2A30B5A029DFCDCD002D6760 /* Main.storyboard */,
@@ -243,6 +254,18 @@
 				2AFBBE0429E65F1300A4245E /* ThirdViewController_2nd_Assignment.swift */,
 			);
 			path = SecondSeminar;
+			sourceTree = "<group>";
+		};
+		2AD4367229F6A7060088F2E5 /* ThirdSeminar */ = {
+			isa = PBXGroup;
+			children = (
+				2AD4367929F8D57C0088F2E5 /* MainView.swift */,
+				2AD4367329F6A73F0088F2E5 /* MainViewController.swift */,
+				2AD4367529F8CF0E0088F2E5 /* BaseView.swift */,
+				2AD4367729F8CF380088F2E5 /* BaseViewController.swift */,
+				2AD4367B29F8DCE30088F2E5 /* MyPageViewController.swift */,
+			);
+			path = ThirdSeminar;
 			sourceTree = "<group>";
 		};
 		2AFBBDF529E5978B00A4245E /* Font */ = {
@@ -413,16 +436,21 @@
 				2A1758EF29E3CE610077399D /* FirstViewController_2nd_Seminar.swift in Sources */,
 				2A30B59F29DFCDCD002D6760 /* FisrtViewController_1st_Assignment.swift in Sources */,
 				2A17590329E4472A0077399D /* UILabel+.swift in Sources */,
+				2AD4367829F8CF380088F2E5 /* BaseViewController.swift in Sources */,
 				2AFBBDF729E5AD4C00A4245E /* FirstViewController_2nd_Assignment.swift in Sources */,
 				2A17590129E3EC870077399D /* UIView+.swift in Sources */,
 				2AFBBDF229E5948C00A4245E /* UIFont+.swift in Sources */,
+				2AD4367429F6A73F0088F2E5 /* MainViewController.swift in Sources */,
 				2AFBBDF029E5940100A4245E /* UIColor+.swift in Sources */,
 				2A30B59B29DFCDCD002D6760 /* AppDelegate.swift in Sources */,
 				2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */,
 				2AFBBE0F29E799E600A4245E /* String+.swift in Sources */,
+				2AD4367A29F8D57C0088F2E5 /* MainView.swift in Sources */,
 				2A92620529E4622D006AC370 /* UITextField+.swift in Sources */,
 				2AFBBE0D29E7990D00A4245E /* SecondViewController_2nd_Assignment.swift in Sources */,
+				2AD4367C29F8DCE30088F2E5 /* MyPageViewController.swift in Sources */,
 				2A30B59D29DFCDCD002D6760 /* SceneDelegate.swift in Sources */,
+				2AD4367629F8CF0E0088F2E5 /* BaseView.swift in Sources */,
 				2A1758FA29E3CF650077399D /* SecondViewController_2nd_Seminar.swift in Sources */,
 				2A92620729E4624C006AC370 /* UIButton+.swift in Sources */,
 			);
