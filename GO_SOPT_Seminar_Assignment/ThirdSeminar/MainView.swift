@@ -12,14 +12,18 @@ import Then
 
 final class MainView: BaseView {
 
-    let myPageButton = UIButton().then {
-        $0.setTitle("마이페이지로!", for: .normal)
-        $0.backgroundColor = .tvingGray3
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = .tvingSemiBold(ofSize: 14)
-        $0.titleLabel?.textAlignment = .center
-        $0.makeBorder(width: 1, color: .tvingGray3)
-        $0.makeCornerRound(radius: 3)
+    let myPageButton = UIButton()
+    
+    override func setStyle() {
+        myPageButton.do {
+            $0.setTitle("마이페이지로!", for: .normal)
+            $0.backgroundColor = .tvingGray3
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .tvingSemiBold(ofSize: 14)
+            $0.titleLabel?.textAlignment = .center
+            $0.makeBorder(width: 1, color: .tvingGray3)
+            $0.makeCornerRound(radius: 3)
+        }
     }
  
     override func setLayout() {
