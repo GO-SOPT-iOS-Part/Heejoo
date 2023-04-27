@@ -42,7 +42,7 @@ final class MyPageTableViewFooter: UITableViewHeaderFooterView {
         logOutButton.snp.makeConstraints{
             $0.center.equalToSuperview()
             $0.bottom.equalToSuperview().inset(127)
-            $0.trailing.leading.equalToSuperview().inset(8)
+            $0.trailing.leading.equalToSuperview()
             $0.height.equalTo(55)
         }
     }

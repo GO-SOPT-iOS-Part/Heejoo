@@ -13,7 +13,7 @@ extension UIImage {
     static var backButton: UIImage {UIImage(named: "backButton")!}
     static var alarm: UIImage {UIImage(named: "alarm")!}
     static var setting: UIImage {UIImage(named: "setting")!}
-    static var youtube: UIImage {UIImage(named: "youtube")!}
+    static var usage: UIImage {UIImage(named: "usage")!}
     static var cash: UIImage {UIImage(named: "cash")!}
     static var tvnjtbc: UIImage {UIImage(named: "tvnjtbc")!}
     static var tvingProfile: UIImage {UIImage(named: "tvingProfile")!}

@@ -35,4 +35,9 @@ extension UIColor {
     class var tvingGray4: UIColor {
         return UIColor(r: 98, g: 98, b: 98)
     }
+    
+    class var tvingGray5: UIColor {
+        return UIColor(r: 25, g: 25, b: 25)
+    }
+    
 }

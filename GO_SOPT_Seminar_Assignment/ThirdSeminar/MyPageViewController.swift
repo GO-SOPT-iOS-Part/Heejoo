@@ -12,7 +12,6 @@ import Then
 
 final class MyPageViewController: BaseViewController {
     
-    private let tableView = UITableView()
     private let myPageAllView = UITableView(frame: .zero, style: .grouped)
     
     private let dummy1 = MyPage.dummy1()
