@@ -98,7 +98,7 @@ extension MyPageViewController: UITableViewDataSource {
     
 }
 
-extension MyPageViewController: GoToMain {
+extension MyPageViewController: BackButtonAction {
     func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }

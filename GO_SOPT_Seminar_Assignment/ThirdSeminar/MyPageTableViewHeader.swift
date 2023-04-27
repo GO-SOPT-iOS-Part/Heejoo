@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-protocol GoToMain: AnyObject {
+protocol BackButtonAction: AnyObject {
     func backButtonTapped()
 }
 
 final class MyPageTableViewHeader: UITableViewHeaderFooterView {
         
-    weak var cellDelegate: GoToMain?
+    weak var cellDelegate: BackButtonAction?
     let myUser:String = UserDefaults.standard.string(forKey: "userID")!
 
     private let backButton = UIButton()
