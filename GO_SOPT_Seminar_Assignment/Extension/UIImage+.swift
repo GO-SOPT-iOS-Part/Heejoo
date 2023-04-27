@@ -17,5 +17,6 @@ extension UIImage {
     static var cash: UIImage {UIImage(named: "cash")!}
     static var tvnjtbc: UIImage {UIImage(named: "tvnjtbc")!}
     static var tvingProfile: UIImage {UIImage(named: "tvingProfile")!}
+    static var profileImage: UIImage {UIImage(named: "profileImage")!}
 }
 

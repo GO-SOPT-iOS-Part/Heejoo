@@ -18,8 +18,18 @@ final class MyPageViewController: BaseViewController {
     private let dummy1 = MyPage.dummy1()
     private let dummy2 = MyPage.dummy2()
     
+    private let backButton = UIButton()
+    private let alarmButton = UIButton()
+    private let settingButton = UIButton()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        setNavigationBar()
+    }
+    
     override func setStyle() {
-                
+        
         myPageAllView.do {
             $0.rowHeight = 54
             $0.delegate = self
@@ -39,12 +49,57 @@ final class MyPageViewController: BaseViewController {
         }
     }
     
+    func setNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = .black
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        backButton.setImage(.backButton, for: .normal)
+        backButton.snp.makeConstraints {
+            $0.width.equalTo(8)
+            $0.height.equalTo(15)
+        }
+        backButton.addTarget(self,
+                      action: #selector(backButtonTaped),
+                      for: .touchUpInside)
+        let back = UIBarButtonItem(customView: backButton)
+        
+        alarmButton.setImage(.alarm, for: .normal)
+        alarmButton.snp.makeConstraints {
+            $0.width.equalTo(30)
+            $0.height.equalTo(42)
+        }
+        
+        settingButton.setImage(.setting, for: .normal)
+        settingButton.snp.makeConstraints {
+            $0.width.equalTo(33)
+            $0.height.equalTo(31)
+        }
+        
+        let righthStackview = UIStackView.init(arrangedSubviews: [alarmButton, settingButton])
+        righthStackview.distribution = .equalSpacing
+        righthStackview.axis = .horizontal
+        righthStackview.alignment = .center
+        righthStackview.spacing = 17
+        let rightStackBarButtonItem = UIBarButtonItem(customView: righthStackview)
+        
+        navigationItem.leftBarButtonItem = back
+        navigationItem.rightBarButtonItem = rightStackBarButtonItem
+    }
+    
     func setRegister() {
         myPageAllView.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.className)
         myPageAllView.register(MyPageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader.className)
         myPageAllView.register(MyPageTableViewHeader2.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader2.className)
         myPageAllView.register(MyPageTableViewFooter.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewFooter.className)
     }
+    
+    @objc
+    func backButtonTaped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension MyPageViewController: UITableViewDelegate {}
@@ -56,17 +111,12 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader
-            cell.cellDelegate = self
-            return cell
-        } else {
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader2") as! MyPageTableViewHeader2
-        }
+        return section == 0 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader :
+        tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader2") as! MyPageTableViewHeader2
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 370 : 32
+        return section == 0 ? 326 : 32
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -98,8 +148,3 @@ extension MyPageViewController: UITableViewDataSource {
     
 }
 
-extension MyPageViewController: BackButtonAction {
-    func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
-    }
-}

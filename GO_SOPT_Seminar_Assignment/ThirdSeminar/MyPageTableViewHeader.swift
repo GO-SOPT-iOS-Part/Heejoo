@@ -10,18 +10,10 @@ import UIKit
 import SnapKit
 import Then
 
-protocol BackButtonAction: AnyObject {
-    func backButtonTapped()
-}
-
 final class MyPageTableViewHeader: UITableViewHeaderFooterView {
         
-    weak var cellDelegate: BackButtonAction?
     let myUser:String = UserDefaults.standard.string(forKey: "userID")!
 
-    private let backButton = UIButton()
-    private let alarmButton = UIButton()
-    private let settingButton = UIButton()
     private let profileImage = UIButton()
     private let myName = UILabel()
     private let changeProfile = UIButton()
@@ -62,16 +54,6 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     }
     
     private func setStyle() {
-        backButton.do {
-            $0.setImage(.backButton, for: .normal)
-            $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        }
-        alarmButton.do {
-            $0.setImage(.alarm, for: .normal)
-        }
-        settingButton.do {
-            $0.setImage(.setting, for: .normal)
-        }
         profileImage.do {
             $0.setImage(.tvingProfile, for: .normal)
             $0.makeCornerRound(radius: 15)
@@ -136,9 +118,6 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     
     private func setLayout() {
         contentView.addSubviews(
-            backButton,
-            alarmButton,
-            settingButton,
             profileImage,
             myName,
             changeProfile,
@@ -154,32 +133,14 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             someContentsText2,
             arrowButton
         )
-        backButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30)
-            $0.leading.equalToSuperview().inset(24)
-            $0.width.equalTo(8)
-            $0.height.equalTo(15)
-        }
-        alarmButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(67)
-            $0.centerY.equalTo(backButton.snp.centerY)
-            $0.width.equalTo(30)
-            $0.height.equalTo(42)
-        }
-        settingButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(23.5)
-            $0.trailing.equalToSuperview().inset(22)
-            $0.width.equalTo(33)
-            $0.height.equalTo(31)
-        }
         profileImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(80)
+            $0.top.equalToSuperview().inset(30)
             $0.leading.equalToSuperview().inset(24)
             $0.width.equalTo(72)
             $0.height.equalTo(74)
         }
         myName.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(102)
+            $0.top.equalToSuperview().inset(57)
             $0.leading.equalToSuperview().inset(118)
             $0.centerY.equalTo(profileImage.snp.centerY)
         }
@@ -190,7 +151,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.height.equalTo(25)
         }
         myInfo.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(183)
+            $0.top.equalToSuperview().inset(138)
             $0.trailing.leading.equalToSuperview().inset(10)
             $0.height.equalTo(92)
         }
@@ -221,7 +182,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.trailing.equalTo(myInfo.snp.trailing).offset(-17)
         }
         someContents.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(287)
+            $0.top.equalToSuperview().inset(242)
             $0.trailing.leading.equalToSuperview().inset(10)
             $0.height.equalTo(60)
         }
@@ -238,11 +199,4 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.trailing.equalTo(someContents.snp.trailing).offset(-13)
         }
     }
-    
-    @objc
-    func backButtonTapped() {
-        cellDelegate?.backButtonTapped()
-    }
 }
-
-
