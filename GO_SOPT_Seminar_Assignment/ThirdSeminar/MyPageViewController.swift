@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
+
 final class MyPageViewController: BaseViewController {
     
     private let myPageAllView = UITableView(frame: .zero, style: .grouped)
@@ -18,6 +19,7 @@ final class MyPageViewController: BaseViewController {
     private let dummy2 = MyPage.dummy2()
     
     override func setStyle() {
+                
         myPageAllView.do {
             $0.rowHeight = 54
             $0.delegate = self
@@ -54,7 +56,13 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return section == 0 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") : tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader2")
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader
+        cell.cellDelegate = self
+        if section == 0 {
+            return cell
+        } else {
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,11 +72,11 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return section == 1 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewFooter") : nil
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-            return section == 1 ? 205 : 0
-        }
-
+        return section == 1 ? 205 : 0
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? dummy1.count : dummy2.count
@@ -87,5 +95,11 @@ extension MyPageViewController: UITableViewDataSource {
         return cell
         
     }
-   
+    
+}
+
+extension MyPageViewController: GoToMain {
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

@@ -10,7 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+protocol GoToMain: AnyObject {
+    func backButtonTapped()
+}
+
 final class MyPageTableViewHeader: UITableViewHeaderFooterView {
+        
+    weak var cellDelegate: GoToMain?
+    let myUser:String = UserDefaults.standard.string(forKey: "userID")!
 
     private let backButton = UIButton()
     private let alarmButton = UIButton()
@@ -47,7 +54,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         
         setStyle()
-        setLayout()
+        setLayout()        
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +64,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
     private func setStyle() {
         backButton.do {
             $0.setImage(.backButton, for: .normal)
+            $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         }
         alarmButton.do {
             $0.setImage(.alarm, for: .normal)
@@ -69,7 +77,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.makeCornerRound(radius: 15)
         }
         myName.do {
-            $0.text = "벼니쥬"
+            $0.text = myUser
             $0.textColor = .white
             $0.font = .tvingMedium(ofSize: 17)
         }
@@ -230,4 +238,11 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.trailing.equalTo(someContents.snp.trailing).offset(-13)
         }
     }
+    
+    @objc
+    func backButtonTapped() {
+        cellDelegate?.backButtonTapped()
+    }
 }
+
+
