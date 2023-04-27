@@ -56,12 +56,12 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader
-        cell.cellDelegate = self
         if section == 0 {
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader
+            cell.cellDelegate = self
             return cell
         } else {
-            return nil
+            return tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader2") as! MyPageTableViewHeader2
         }
     }
     
