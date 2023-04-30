@@ -18,5 +18,15 @@ extension UIImage {
     static var tvnjtbc: UIImage {UIImage(named: "tvnjtbc")!}
     static var tvingProfile: UIImage {UIImage(named: "tvingProfile")!}
     static var profileImage: UIImage {UIImage(named: "profileImage")!}
+    static var tvingTitleImage: UIImage {UIImage(named: "tvingTitleImage")!}
+    static var gotoMyPageButton: UIImage {UIImage(named: "gotoMyPageButton")!}
+    static var headerImage: UIImage {UIImage(named: "headerImage")!}
+    static var signal: UIImage {UIImage(named: "signal")!}
+    static var harry: UIImage {UIImage(named: "harry")!}
+    static var ring: UIImage {UIImage(named: "ring")!}
+    static var moon: UIImage {UIImage(named: "moon")!}
+    static var yellow: UIImage {UIImage(named: "yellow")!}
+    static var blue: UIImage {UIImage(named: "blue")!}
+    static var linkButton: UIImage {UIImage(named: "linkButton")!}
 }
 

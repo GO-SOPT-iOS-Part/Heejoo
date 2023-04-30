@@ -40,4 +40,8 @@ extension UIColor {
         return UIColor(r: 25, g: 25, b: 25)
     }
     
+    class var tvingGray6: UIColor {
+        return UIColor(r: 130, g: 130, b: 130)
+    }
+    
 }
