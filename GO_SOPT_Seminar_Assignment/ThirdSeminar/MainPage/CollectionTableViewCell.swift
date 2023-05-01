@@ -112,11 +112,6 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
             headerPageControl.currentPage = newPage
         }
     }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let page = Int(targetContentOffset.pointee.x / self.frame.width)
-        self.headerPageControl.currentPage = page
-    }
 }
 
 extension CollectionTableViewCell: GoToMyPageButtonAction {
