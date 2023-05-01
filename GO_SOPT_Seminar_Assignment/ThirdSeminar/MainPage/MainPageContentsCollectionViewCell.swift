@@ -44,7 +44,6 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(collectionViewItem.snp.bottom).offset(3)
         }
         
-        
     }
 
     func configureCell(_ mainPage: MainPage) {

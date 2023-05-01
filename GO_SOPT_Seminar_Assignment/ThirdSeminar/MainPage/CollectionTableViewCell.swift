@@ -11,13 +11,15 @@ import SnapKit
 import Then
 
 final class CollectionTableViewCell: UITableViewCell {
-
+    
+    weak var cellDelegate: GoToMyPageButtonAction?
+    
+    private let dummy = MainPagePhoto.dummy()
+    
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: flowLayout)
     private let flowLayout = UICollectionViewFlowLayout()
-
-    private let tvingTitle = UIImageView()
-    private let goToMyPageButton = UIButton()
+    
     private let headerPageControl = UIPageControl()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,30 +40,32 @@ final class CollectionTableViewCell: UITableViewCell {
             $0.register(MainPageHeaderCollectionViewCell.self, forCellWithReuseIdentifier: MainPageHeaderCollectionViewCell.className)
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
+            $0.isPagingEnabled = true
             $0.dataSource = self
+            $0.delegate = self
             $0.backgroundColor = .clear
         }
         
         flowLayout.do {
-            $0.itemSize = CGSize(width: 390, height: 500)
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 520)
+            $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            $0.minimumLineSpacing = 0
+            $0.minimumInteritemSpacing = 0
             $0.scrollDirection = .horizontal
-        }
-        
-        tvingTitle.do {
-            $0.image = .tvingTitleImage
-        }
-        
-        goToMyPageButton.do {
-            $0.setImage(.gotoMyPageButton, for: .normal)
+            $0.estimatedItemSize = .zero
         }
         
         headerPageControl.do {
             $0.numberOfPages = 8
-            $0.currentPage = 0
             $0.pageIndicatorTintColor = .tvingGray4
+            $0.currentPage = 0
             $0.currentPageIndicatorTintColor = .white
+            $0.isUserInteractionEnabled = false
+            $0.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            $0.backgroundStyle = .minimal
+            $0.allowsContinuousInteraction = false
         }
-
+        
         separatorInset.left = 0
         selectionStyle = .none
         backgroundColor = .black
@@ -70,36 +74,23 @@ final class CollectionTableViewCell: UITableViewCell {
     func setLayout() {
         contentView.addSubviews(collectionView,headerPageControl)
         
-        collectionView.addSubviews(tvingTitle, goToMyPageButton)
-        
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(520)
         }
         
-        tvingTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(58)
-            $0.leading.equalToSuperview().inset(11)
-            $0.width.equalTo(99)
-            $0.height.equalTo(25)
-        }
-        goToMyPageButton.snp.makeConstraints {
-            $0.centerY.equalTo(tvingTitle.snp.centerY)
-            $0.leading.equalTo(tvingTitle.snp.trailing).offset(240)
-            $0.width.equalTo(33)
-            $0.height.equalTo(31)
-        }
         headerPageControl.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(535)
+            $0.top.equalToSuperview().inset(540)
         }
     }
     
     func configureCell() {
         
     }
-
+    
 }
 
-extension CollectionTableViewCell: UICollectionViewDataSource {
+extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
@@ -107,9 +98,30 @@ extension CollectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageHeaderCollectionViewCell.className, for: indexPath) as? MainPageHeaderCollectionViewCell else { return UICollectionViewCell() }
-        
-        cell.configureCell()
-
+        cell.cellDelegate = self
+        cell.configureCell(dummy[indexPath.item])
         return cell
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = scrollView.bounds.size.width
+        let x = scrollView.contentOffset.x + (width/2)
+        
+        let newPage = Int(x/width)
+        if headerPageControl.currentPage != newPage {
+            headerPageControl.currentPage = newPage
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let page = Int(targetContentOffset.pointee.x / self.frame.width)
+        self.headerPageControl.currentPage = page
+    }
 }
+
+extension CollectionTableViewCell: GoToMyPageButtonAction {
+    func gotoMyPageButtonTapped() {
+        cellDelegate?.gotoMyPageButtonTapped()
+    }
+}
+

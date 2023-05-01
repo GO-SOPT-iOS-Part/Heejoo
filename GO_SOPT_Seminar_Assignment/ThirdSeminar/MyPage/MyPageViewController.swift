@@ -51,9 +51,7 @@ final class MyPageViewController: BaseViewController {
     
     func setNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = .black
-        self.navigationController?.navigationBar.isTranslucent = false
         
         backButton.setImage(.backButton, for: .normal)
         backButton.snp.makeConstraints {

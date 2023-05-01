@@ -72,6 +72,7 @@ extension MainViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.className, for: indexPath) as? CollectionTableViewCell else { return UITableViewCell() }
+            cell.cellDelegate = self
             cell.configureCell()
             return cell
         } else if indexPath.section == 1 {
@@ -116,7 +117,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         UIView()
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 3 {
             return 103
@@ -125,3 +126,11 @@ extension MainViewController: UITableViewDataSource {
         }
     }
 }
+
+extension MainViewController: GoToMyPageButtonAction {
+    func gotoMyPageButtonTapped() {
+        let myPageViewController = MyPageViewController()
+        self.navigationController?.pushViewController(myPageViewController, animated: true)
+    }
+}
+
