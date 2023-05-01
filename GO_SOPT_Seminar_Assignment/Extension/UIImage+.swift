@@ -36,7 +36,6 @@ extension UIImage {
     static var photo_6: UIImage {UIImage(named: "photo_6")!}
     static var photo_7: UIImage {UIImage(named: "photo_7")!}
     static var photo_8: UIImage {UIImage(named: "photo_8")!}
-
-    
+    static var wifi: UIImage {UIImage(named: "wifi")!}
 }
 

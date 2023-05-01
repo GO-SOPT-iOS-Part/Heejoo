@@ -11,15 +11,12 @@ import SnapKit
 import Then
 
 final class CollectionTableViewCell: UITableViewCell {
-    
-    weak var cellDelegate: GoToMyPageButtonAction?
-    
+        
     private let dummy = MainPagePhoto.dummy()
     
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: flowLayout)
     private let flowLayout = UICollectionViewFlowLayout()
-    
     private let headerPageControl = UIPageControl()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -98,7 +95,6 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageHeaderCollectionViewCell.className, for: indexPath) as? MainPageHeaderCollectionViewCell else { return UICollectionViewCell() }
-        cell.cellDelegate = self
         cell.configureCell(dummy[indexPath.item])
         return cell
     }
@@ -114,9 +110,6 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-extension CollectionTableViewCell: GoToMyPageButtonAction {
-    func gotoMyPageButtonTapped() {
-        cellDelegate?.gotoMyPageButtonTapped()
-    }
-}
+
+
 

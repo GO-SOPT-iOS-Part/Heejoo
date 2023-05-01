@@ -7,9 +7,16 @@
 
 import UIKit
 
-final class MainViewController: BaseViewController {
+import SnapKit
+import Then
+
+class MainViewController: BaseViewController {
     
     private let mainPageAllView = UITableView()
+    private let headerBar = UIImageView()
+    private let tvingTitle = UIImageView()
+    private let wifi = UIImageView()
+    private let goToMyPageButton = UIButton()
     
     private let dummy = MainPage.dummy()
     
@@ -21,15 +28,61 @@ final class MainViewController: BaseViewController {
             $0.backgroundColor = .black
             setRegister()
         }
+        
+        headerBar.do {
+            $0.image = .headerBar
+        }
+        
+        wifi.do {
+            $0.image = .wifi
+        }
+        
+        tvingTitle.do {
+            $0.image = .tvingTitleImage
+        }
+        
+        goToMyPageButton.do {
+            $0.setImage(.gotoMyPageButton, for: .normal)
+            $0.addTarget(self, action: #selector(gotoMyPageButtonClicked), for: .touchUpInside)
+        }
     }
     
     override func setLayout() {
         
-        view.addSubview(mainPageAllView)
+        view.addSubviews(mainPageAllView,
+                         headerBar,
+                         tvingTitle,
+                         wifi,
+                         goToMyPageButton)
+        
         mainPageAllView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets)
             $0.bottom.equalTo(view.safeAreaInsets)
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        headerBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(55)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        tvingTitle.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(115)
+            $0.leading.equalToSuperview().inset(11)
+            $0.width.equalTo(99)
+            $0.height.equalTo(25)
+        }
+        
+        wifi.snp.makeConstraints {
+            $0.centerY.equalTo(tvingTitle.snp.centerY)
+            $0.leading.equalTo(tvingTitle.snp.trailing).offset(195)
+        }
+        
+        goToMyPageButton.snp.makeConstraints {
+            $0.centerY.equalTo(tvingTitle.snp.centerY)
+            $0.leading.equalTo(tvingTitle.snp.trailing).offset(240)
+            $0.width.equalTo(33)
+            $0.height.equalTo(31)
         }
         
     }
@@ -42,6 +95,12 @@ final class MainViewController: BaseViewController {
         mainPageAllView.register(Section2TableViewCell.self, forCellReuseIdentifier:  Section2TableViewCell.className)
         mainPageAllView.register(Collection5TableViewCell.self, forCellReuseIdentifier:  Collection5TableViewCell.className)
         
+    }
+    
+    @objc
+    func gotoMyPageButtonClicked() {
+        let gotoMyPageViewController = MyPageViewController()
+        self.navigationController?.pushViewController(gotoMyPageViewController, animated: true)
     }
 }
 
@@ -72,7 +131,6 @@ extension MainViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.className, for: indexPath) as? CollectionTableViewCell else { return UITableViewCell() }
-            cell.cellDelegate = self
             cell.configureCell()
             return cell
         } else if indexPath.section == 1 {
@@ -124,13 +182,6 @@ extension MainViewController: UITableViewDataSource {
         } else {
             return 0
         }
-    }
-}
-
-extension MainViewController: GoToMyPageButtonAction {
-    func gotoMyPageButtonTapped() {
-        let myPageViewController = MyPageViewController()
-        self.navigationController?.pushViewController(myPageViewController, animated: true)
     }
 }
 
