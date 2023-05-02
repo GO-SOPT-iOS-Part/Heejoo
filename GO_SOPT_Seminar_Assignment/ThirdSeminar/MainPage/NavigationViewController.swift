@@ -14,12 +14,11 @@ final class NavigationViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         currentPage = 0
     }
-        
-    private let dummy = Navigation.dummy()
     
+    private let dummy = Navigation.dummy()
+        
     private var currentPage: Int = 0 {
         didSet {
             bind(oldValue: oldValue, newValue: currentPage)
@@ -30,14 +29,30 @@ final class NavigationViewController: BaseViewController {
         didSet {
             guard let isSelected else { return }
             collectionView.selectItem(at: IndexPath(item: isSelected, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            guard collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) is NavigationCollectionViewCell else { return }
-
+            guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? NavigationCollectionViewCell else { return }
+            
+            
+            menuLine.snp.remakeConstraints {
+                $0.bottom.equalTo(collectionView.snp.bottom)
+                $0.leading.equalTo(cell.snp.leading).offset(-6)
+                $0.trailing.equalTo(cell.snp.trailing).offset(4)
+                $0.height.equalTo(3)
+            }
+            
+            UIView.animate(withDuration: 0.3) {
+                self.menuLine.layoutIfNeeded()
+            }
+            
         }
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: flowLayout)
     private let flowLayout = UICollectionViewFlowLayout()
+    
+    private let menuLine = UIView().then {
+        $0.backgroundColor = .white
+    }
     
     private let tvingTitle = UIImageView()
     private let wifi = UIImageView()
@@ -99,9 +114,10 @@ final class NavigationViewController: BaseViewController {
         }
         
         flowLayout.do {
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width/6, height: 27)
             $0.scrollDirection = .horizontal
-            $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            $0.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
+            $0.minimumInteritemSpacing = 30
+            $0.minimumLineSpacing = 0
         }
         
         if let firstVC = dataViewControllers.first {
@@ -116,7 +132,8 @@ final class NavigationViewController: BaseViewController {
         view.addSubviews(tvingTitle,
                          wifi,
                          goToMyPageButton,
-                         collectionView)
+                         collectionView,
+                         menuLine)
         
         pageViewController.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -147,6 +164,13 @@ final class NavigationViewController: BaseViewController {
             $0.top.equalToSuperview().inset(100)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(40)
+        }
+        
+        menuLine.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom)
+            $0.leading.equalToSuperview().inset(18)
+            $0.width.equalTo(15)
+            $0.height.equalTo(3)
         }
         
     }
@@ -199,14 +223,13 @@ extension NavigationViewController: UIPageViewControllerDataSource, UIPageViewCo
     
 }
 
-extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:NavigationCollectionViewCell.className, for: indexPath) as? NavigationCollectionViewCell else { return UICollectionViewCell() }
         cell.configureCell(dummy[indexPath.item])
         return cell
@@ -215,5 +238,17 @@ extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView.cellForItem(at: IndexPath(item: isSelected!, section: 0)) is NavigationCollectionViewCell else { return }
         currentPage = indexPath.item
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellSize = NSString(string: dummy[indexPath.row].navigation).boundingRect(
+            with: CGSize(width: 100, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)
+            ],
+            context: nil)
+        
+        return CGSize(width: cellSize.width + 5, height: collectionView.frame.height)
     }
 }
