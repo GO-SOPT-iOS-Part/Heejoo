@@ -12,7 +12,28 @@ import Then
 
 final class NavigationViewController: BaseViewController {
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        currentPage = 0
+    }
+        
     private let dummy = Navigation.dummy()
+    
+    private var currentPage: Int = 0 {
+        didSet {
+            bind(oldValue: oldValue, newValue: currentPage)
+        }
+    }
+    
+    var isSelected: Int? {
+        didSet {
+            guard let isSelected else { return }
+            collectionView.selectItem(at: IndexPath(item: isSelected, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            guard collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) is NavigationCollectionViewCell else { return }
+
+        }
+    }
     
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: flowLayout)
@@ -47,7 +68,16 @@ final class NavigationViewController: BaseViewController {
         return vc
     }()
     
+    private func bind(oldValue: Int, newValue: Int) {
+        
+        // collectionView 에서 선택한 경우
+        let direction: UIPageViewController.NavigationDirection = oldValue < newValue ? .forward : .reverse
+        pageViewController.setViewControllers([dataViewControllers[currentPage]], direction: direction, animated: true, completion: nil)
+        self.isSelected = newValue
+    }
+    
     override func setStyle() {
+        
         wifi.do {
             $0.image = .wifi
         }
@@ -69,7 +99,7 @@ final class NavigationViewController: BaseViewController {
         }
         
         flowLayout.do {
-            $0.itemSize = CGSize(width: 85, height: 27)
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width/6, height: 27)
             $0.scrollDirection = .horizontal
             $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
@@ -159,9 +189,18 @@ extension NavigationViewController: UIPageViewControllerDataSource, UIPageViewCo
         }
         return dataViewControllers[nextIndex]
     }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let currentVC = pageViewController.viewControllers?.first,
+              let currentIndex = dataViewControllers.firstIndex(of: currentVC) else { return }
+        currentPage = currentIndex
+    }
+    
+    
 }
 
 extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
     }
@@ -173,4 +212,8 @@ extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView.cellForItem(at: IndexPath(item: isSelected!, section: 0)) is NavigationCollectionViewCell else { return }
+        currentPage = indexPath.item
+    }
 }
