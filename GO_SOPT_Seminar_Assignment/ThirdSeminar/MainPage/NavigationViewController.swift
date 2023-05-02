@@ -109,13 +109,12 @@ final class NavigationViewController: BaseViewController {
             $0.register(NavigationCollectionViewCell.self, forCellWithReuseIdentifier: NavigationCollectionViewCell.className)
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
-            $0.isPagingEnabled = true
             $0.backgroundColor = .clear
         }
         
         flowLayout.do {
             $0.scrollDirection = .horizontal
-            $0.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
+            $0.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
             $0.minimumInteritemSpacing = 30
             $0.minimumLineSpacing = 0
         }
