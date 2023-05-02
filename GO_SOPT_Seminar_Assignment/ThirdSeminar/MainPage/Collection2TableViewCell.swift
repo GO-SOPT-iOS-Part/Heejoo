@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class Collection2TableViewCell: UITableViewCell {
     
     private let dummy = MainPage.dummy()

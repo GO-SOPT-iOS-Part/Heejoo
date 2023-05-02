@@ -38,6 +38,7 @@ class BaseViewController: UIViewController {
         setLayout()
         setTarget()
         setInit()
+        setDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,5 +64,7 @@ class BaseViewController: UIViewController {
     func setInit() {
         self.navigationItem.hidesBackButton = true
     }
+    
+    func setDelegate() {}
 }
 

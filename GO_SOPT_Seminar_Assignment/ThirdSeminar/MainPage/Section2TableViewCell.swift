@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class Section2TableViewCell: UITableViewCell {
 
     private let linkButton = UIButton()
