@@ -30,6 +30,7 @@
 		2A820C182A002E83006C58F9 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C172A002E83006C58F9 /* NavigationViewController.swift */; };
 		2A820C1A2A0100AE006C58F9 /* NavigationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */; };
 		2A820C1C2A010E22006C58F9 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C1B2A010E22006C58F9 /* Navigation.swift */; };
+		2A820C212A019898006C58F9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C202A019898006C58F9 /* TabBarViewController.swift */; };
 		2A92620529E4622D006AC370 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620429E4622D006AC370 /* UITextField+.swift */; };
 		2A92620729E4624C006AC370 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620629E4624C006AC370 /* UIButton+.swift */; };
 		2AD4367429F6A73F0088F2E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367329F6A73F0088F2E5 /* MainViewController.swift */; };
@@ -114,6 +115,7 @@
 		2A820C172A002E83006C58F9 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A820C1B2A010E22006C58F9 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		2A820C202A019898006C58F9 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2A92620429E4622D006AC370 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		2A92620629E4624C006AC370 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		2AD4367329F6A73F0088F2E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				2AD436A729FBB4510088F2E5 /* Collection5TableViewCell.swift */,
 				2A820C172A002E83006C58F9 /* NavigationViewController.swift */,
 				2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */,
+				2A820C202A019898006C58F9 /* TabBarViewController.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				2A30B59B29DFCDCD002D6760 /* AppDelegate.swift in Sources */,
 				2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */,
 				2AD4367E29F950410088F2E5 /* MyPage.swift in Sources */,
+				2A820C212A019898006C58F9 /* TabBarViewController.swift in Sources */,
 				2AFBBE0F29E799E600A4245E /* String+.swift in Sources */,
 				2AD436B029FD71960088F2E5 /* MainPageContents2CollectionViewCell.swift in Sources */,
 				2AD4368029F955AB0088F2E5 /* MyPageTableViewCell.swift in Sources */,

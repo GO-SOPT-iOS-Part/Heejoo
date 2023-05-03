@@ -37,5 +37,13 @@ extension UIImage {
     static var photo_7: UIImage {UIImage(named: "photo_7")!}
     static var photo_8: UIImage {UIImage(named: "photo_8")!}
     static var wifi: UIImage {UIImage(named: "wifi")!}
+    static var home: UIImage {UIImage(named: "home")!}
+    static var homeSelected: UIImage {UIImage(named: "homeSelected")!}
+    static var open: UIImage {UIImage(named: "open")!}
+    static var openSelected: UIImage {UIImage(named: "openSelected")!}
+    static var search: UIImage {UIImage(named: "search")!}
+    static var searchSelected: UIImage {UIImage(named: "searchSelected")!}
+    static var record: UIImage {UIImage(named: "record")!}
+    static var recordSelected: UIImage {UIImage(named: "recordSelected")!}
 }
 
