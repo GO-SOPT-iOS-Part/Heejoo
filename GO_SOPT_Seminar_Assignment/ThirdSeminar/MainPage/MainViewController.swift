@@ -10,12 +10,22 @@ import UIKit
 import SnapKit
 import Then
 
+protocol IsScrolled: AnyObject {
+    func hide()
+    func notHide()
+}
+
 final class MainViewController: BaseViewController {
-    
+        
+    weak var delegate: IsScrolled?
     var isScrolled = false
     
     private let mainPageAllView = UITableView()
-    
+    private let backGroundView = UIView().then {
+        $0.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 0.8)
+        $0.isHidden = true
+    }
+
     private let dummy = MainPage.dummy()
     
     override func setStyle() {
@@ -31,10 +41,15 @@ final class MainViewController: BaseViewController {
     
     override func setLayout() {
         
-        view.addSubviews(mainPageAllView)
+        view.addSubviews(mainPageAllView, backGroundView)
         
         mainPageAllView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        backGroundView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(75)
         }
     }
     
@@ -54,11 +69,13 @@ extension MainViewController: UITableViewDelegate {
         if scrollView.contentOffset.y > 100 {
             if isScrolled == false {
                 isScrolled = true
-                print("안녕")
+                delegate?.hide()
+                backGroundView.isHidden = false
             }
         } else if scrollView.contentOffset.y < 0 {
             isScrolled = false
-            print("메롱")
+            delegate?.notHide()
+            backGroundView.isHidden = true
         }
     }
 }

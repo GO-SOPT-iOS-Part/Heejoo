@@ -46,5 +46,9 @@ extension UIImage {
     static var movieImage: UIImage {UIImage(named: "movieImage")!}
     static var paraImage: UIImage {UIImage(named: "paraImage")!}
     static var kidsImage: UIImage {UIImage(named: "kidsImage")!}
+    static var live1: UIImage {UIImage(named: "live1")!}
+    static var live2: UIImage {UIImage(named: "live2")!}
+    static var live3: UIImage {UIImage(named: "live3")!}
+    static var live4: UIImage {UIImage(named: "live4")!}
 }
 

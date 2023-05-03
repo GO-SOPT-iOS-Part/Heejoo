@@ -87,7 +87,7 @@ final class Collection3TableViewCell: UITableViewCell {
             $0.height.equalTo(10)
         }
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.top).offset(14)
+            $0.top.equalTo(titleLabel.snp.top).offset(17)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

@@ -156,7 +156,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.height.equalTo(92)
         }
         myInfoUseImage.snp.makeConstraints {
-            $0.top.equalTo(myInfo.snp.top).offset(18)
+            $0.top.equalTo(myInfo.snp.top).offset(15)
             $0.leading.equalTo(myInfo.snp.leading).offset(11)
             $0.size.equalTo(23)
         }
@@ -165,7 +165,7 @@ final class MyPageTableViewHeader: UITableViewHeaderFooterView {
             $0.leading.equalTo(myInfoUseImage.snp.trailing).offset(5)
         }
         myInfoUseText.snp.makeConstraints {
-            $0.centerY.equalTo(myInfoUseImage.snp.centerY)
+            $0.centerY.equalTo(myInfoUseLabel.snp.centerY)
             $0.trailing.equalTo(myInfo.snp.trailing).offset(-17)
         }
         myInfoCashImage.snp.makeConstraints {

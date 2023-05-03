@@ -34,8 +34,8 @@ final class NavigationViewController: BaseViewController {
             
             menuLine.snp.remakeConstraints {
                 $0.bottom.equalTo(collectionView.snp.bottom)
-                $0.leading.equalTo(cell.snp.leading).offset(-6)
-                $0.trailing.equalTo(cell.snp.trailing).offset(4)
+                $0.leading.equalTo(cell.snp.leading).offset(2)
+                $0.trailing.equalTo(cell.snp.trailing).offset(-2)
                 $0.height.equalTo(3)
             }
             
@@ -100,7 +100,9 @@ final class NavigationViewController: BaseViewController {
     }
     
     private lazy var dataViewControllers: [UIViewController] = {
-        return [MainViewController(), vc1, vc2, vc3, vc4, vc5]
+        let mainViewController = MainViewController()
+        mainViewController.delegate = self
+        return [mainViewController, vc1, vc2, vc3, vc4, vc5]
     }()
     
     private lazy var pageViewController: UIPageViewController = {
@@ -191,7 +193,7 @@ final class NavigationViewController: BaseViewController {
         }
         
         menuLine.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom)
+            $0.top.equalTo(collectionView.snp.bottom).offset(-3)
             $0.leading.equalToSuperview().inset(18)
             $0.width.equalTo(15)
             $0.height.equalTo(3)
@@ -221,7 +223,6 @@ final class NavigationViewController: BaseViewController {
             $0.top.equalToSuperview().inset(130)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
     }
     
     override func setTarget() {
@@ -299,5 +300,31 @@ extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDa
             context: nil)
         
         return CGSize(width: cellSize.width + 5, height: collectionView.frame.height)
+    }
+}
+
+extension NavigationViewController: IsScrolled {
+    func hide() {
+        tvingTitle.isHidden = true
+        wifi.isHidden = true
+        goToMyPageButton.isHidden = true
+        
+        collectionView.snp.remakeConstraints {
+            $0.top.equalToSuperview().inset(35)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+    }
+    
+    func notHide() {
+        tvingTitle.isHidden = false
+        wifi.isHidden = false
+        goToMyPageButton.isHidden = false
+        
+        collectionView.snp.remakeConstraints {
+            $0.top.equalToSuperview().inset(90)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(40)
+        }
     }
 }
