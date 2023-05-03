@@ -34,8 +34,8 @@ final class NavigationViewController: BaseViewController {
             
             menuLine.snp.remakeConstraints {
                 $0.bottom.equalTo(collectionView.snp.bottom)
-                $0.leading.equalTo(cell.snp.leading).offset(2)
-                $0.trailing.equalTo(cell.snp.trailing).offset(-2)
+                $0.leading.equalTo(cell.snp.leading).offset(-3)
+                $0.trailing.equalTo(cell.snp.trailing).offset(5)
                 $0.height.equalTo(3)
             }
             

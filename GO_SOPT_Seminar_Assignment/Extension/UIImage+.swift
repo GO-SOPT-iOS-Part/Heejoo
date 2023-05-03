@@ -50,5 +50,9 @@ extension UIImage {
     static var live2: UIImage {UIImage(named: "live2")!}
     static var live3: UIImage {UIImage(named: "live3")!}
     static var live4: UIImage {UIImage(named: "live4")!}
+    static var liveView: UIImage {UIImage(named: "liveView")!}
+    static var searchView: UIImage {UIImage(named: "searchView")!}
+    static var recordView: UIImage {UIImage(named: "recordView")!}
+
 }
 

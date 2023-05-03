@@ -41,7 +41,7 @@ final class Section2TableViewCell: UITableViewCell {
         linkButton.snp.makeConstraints{
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(58)
+            $0.height.equalTo(55)
         }
     }
 
