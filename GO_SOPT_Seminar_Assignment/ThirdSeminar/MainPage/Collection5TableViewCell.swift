@@ -91,10 +91,6 @@ final class Collection5TableViewCell: UITableViewCell {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    func configureCell() {
-        
-    }
 
 }
 

@@ -32,10 +32,6 @@ extension UIImage {
     static var photo_2: UIImage {UIImage(named: "photo_2")!}
     static var photo_3: UIImage {UIImage(named: "photo_3")!}
     static var photo_4: UIImage {UIImage(named: "photo_4")!}
-    static var photo_5: UIImage {UIImage(named: "photo_5")!}
-    static var photo_6: UIImage {UIImage(named: "photo_6")!}
-    static var photo_7: UIImage {UIImage(named: "photo_7")!}
-    static var photo_8: UIImage {UIImage(named: "photo_8")!}
     static var wifi: UIImage {UIImage(named: "wifi")!}
     static var home: UIImage {UIImage(named: "home")!}
     static var homeSelected: UIImage {UIImage(named: "homeSelected")!}
@@ -45,5 +41,10 @@ extension UIImage {
     static var searchSelected: UIImage {UIImage(named: "searchSelected")!}
     static var record: UIImage {UIImage(named: "record")!}
     static var recordSelected: UIImage {UIImage(named: "recordSelected")!}
+    static var liveImage: UIImage {UIImage(named: "liveImage")!}
+    static var tvImage: UIImage {UIImage(named: "tvImage")!}
+    static var movieImage: UIImage {UIImage(named: "movieImage")!}
+    static var paraImage: UIImage {UIImage(named: "paraImage")!}
+    static var kidsImage: UIImage {UIImage(named: "kidsImage")!}
 }
 

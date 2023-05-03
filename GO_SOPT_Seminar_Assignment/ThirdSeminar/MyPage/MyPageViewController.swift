@@ -109,7 +109,7 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return section == 0 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader") as! MyPageTableViewHeader :
+        return section == 0 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewHeader.className) as! MyPageTableViewHeader :
         tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewHeader2") as! MyPageTableViewHeader2
     }
     
@@ -118,7 +118,7 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return section == 1 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageTableViewFooter") : nil
+        return section == 1 ? tableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewFooter.className) : nil
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

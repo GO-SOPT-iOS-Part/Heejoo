@@ -58,20 +58,45 @@ final class NavigationViewController: BaseViewController {
     private let wifi = UIImageView()
     private let goToMyPageButton = UIButton()
     
+    private let liveImage = UIImageView().then {
+        $0.image = .liveImage
+    }
+    
+    private let tvImage = UIImageView().then {
+        $0.image = .tvImage
+    }
+    
+    private let movieImage = UIImageView().then {
+        $0.image = .movieImage
+    }
+    
+    private let paraImage = UIImageView().then {
+        $0.image = .paraImage
+    }
+    
+    private let kidsImage = UIImageView().then {
+        $0.image = .kidsImage
+    }
+    
     private lazy var vc1 =  UIViewController().then {
-        $0.view.backgroundColor = .systemGray
+        $0.view.backgroundColor = .black
+        $0.view.addSubviews(liveImage)
     }
     private lazy var vc2 =  UIViewController().then {
-        $0.view.backgroundColor = .systemPink
+        $0.view.backgroundColor = .black
+        $0.view.addSubviews(tvImage)
     }
     private lazy var vc3 =  UIViewController().then {
-        $0.view.backgroundColor = .systemCyan
+        $0.view.backgroundColor = .black
+        $0.view.addSubviews(movieImage)
     }
     private lazy var vc4 =  UIViewController().then {
-        $0.view.backgroundColor = .systemBlue
+        $0.view.backgroundColor = .black
+        $0.view.addSubviews(paraImage)
     }
     private lazy var vc5 =  UIViewController().then {
-        $0.view.backgroundColor = .systemGreen
+        $0.view.backgroundColor = .black
+        $0.view.addSubviews(kidsImage)
     }
     
     private lazy var dataViewControllers: [UIViewController] = {
@@ -154,13 +179,13 @@ final class NavigationViewController: BaseViewController {
         
         goToMyPageButton.snp.makeConstraints {
             $0.centerY.equalTo(tvingTitle.snp.centerY)
-            $0.trailing.equalToSuperview().inset(8)
-            $0.width.equalTo(33)
-            $0.height.equalTo(31)
+            $0.trailing.equalToSuperview().inset(13)
+            $0.width.equalTo(25)
+            $0.height.equalTo(25)
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(100)
+            $0.top.equalToSuperview().inset(90)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(40)
         }
@@ -170,6 +195,31 @@ final class NavigationViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(18)
             $0.width.equalTo(15)
             $0.height.equalTo(3)
+        }
+        
+        liveImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(130)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        tvImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(130)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        movieImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(130)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        paraImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(130)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        kidsImage.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(130)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
     }

@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class CollectionTableViewCell: UITableViewCell {
-        
+            
     private let dummy = MainPagePhoto.dummy()
     
     private lazy var collectionView = UICollectionView(frame: .zero,
@@ -53,7 +53,7 @@ final class CollectionTableViewCell: UITableViewCell {
         }
         
         headerPageControl.do {
-            $0.numberOfPages = 8
+            $0.numberOfPages = 4
             $0.pageIndicatorTintColor = .tvingGray4
             $0.currentPage = 0
             $0.currentPageIndicatorTintColor = .white
@@ -81,15 +81,11 @@ final class CollectionTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCell() {
-        
-    }
-    
 }
 
 extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -108,6 +104,7 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
             headerPageControl.currentPage = newPage
         }
     }
+    
 }
 
 

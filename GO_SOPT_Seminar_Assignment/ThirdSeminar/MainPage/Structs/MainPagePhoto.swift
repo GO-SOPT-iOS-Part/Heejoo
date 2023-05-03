@@ -14,7 +14,7 @@ struct MainPagePhoto {
 extension MainPagePhoto {
     static func dummy() -> [MainPagePhoto] {
         var photos: [MainPagePhoto] = []
-        for number in 1...8 {
+        for number in 1...4 {
             photos.append(MainPagePhoto(image: UIImage(named: "photo_\(number)")!))
         }
         return photos + photos

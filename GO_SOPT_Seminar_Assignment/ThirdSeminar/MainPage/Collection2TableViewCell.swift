@@ -91,10 +91,6 @@ final class Collection2TableViewCell: UITableViewCell {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    func configureCell() {
-        
-    }
 
 }
 
@@ -104,11 +100,10 @@ extension Collection2TableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(dummy[indexPath.item])
         
-        cell.configureCell(dummy[indexPath.item])
-
-        return cell
+            return cell
     }
 }

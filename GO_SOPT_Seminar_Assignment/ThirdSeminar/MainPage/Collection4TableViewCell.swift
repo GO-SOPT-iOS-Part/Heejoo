@@ -91,11 +91,6 @@ final class Collection4TableViewCell: UITableViewCell {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    func configureCell() {
-        
-    }
-
 }
 
 extension Collection4TableViewCell: UICollectionViewDataSource {

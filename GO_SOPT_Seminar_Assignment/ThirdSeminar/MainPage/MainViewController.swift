@@ -12,8 +12,9 @@ import Then
 
 final class MainViewController: BaseViewController {
     
+    var isScrolled = false
+    
     private let mainPageAllView = UITableView()
-    private let headerBar = UIImageView()
     
     private let dummy = MainPage.dummy()
     
@@ -26,25 +27,15 @@ final class MainViewController: BaseViewController {
             $0.contentInsetAdjustmentBehavior = .never
             setRegister()
         }
-        
-        headerBar.do {
-            $0.image = .headerBar
-        }
     }
     
     override func setLayout() {
         
-        view.addSubviews(mainPageAllView,
-                         headerBar)
+        view.addSubviews(mainPageAllView)
         
         mainPageAllView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        headerBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        
     }
     
     func setRegister() {
@@ -58,7 +49,20 @@ final class MainViewController: BaseViewController {
     }
 }
 
-extension MainViewController: UITableViewDelegate {}
+extension MainViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 100 {
+            if isScrolled == false {
+                isScrolled = true
+                print("안녕")
+            }
+        } else if scrollView.contentOffset.y < 0 {
+            isScrolled = false
+            print("메롱")
+        }
+    }
+}
+
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,20 +89,16 @@ extension MainViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.className, for: indexPath) as? CollectionTableViewCell else { return UITableViewCell() }
-            cell.configureCell()
             return cell
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection2TableViewCell.className, for: indexPath) as? Collection2TableViewCell else { return UITableViewCell() }
-                cell.configureCell()
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection3TableViewCell.className, for: indexPath) as? Collection3TableViewCell else { return UITableViewCell() }
-                cell.configureCell()
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection4TableViewCell.className, for: indexPath) as? Collection4TableViewCell else { return UITableViewCell() }
-                cell.configureCell()
                 return cell
             }
         } else if indexPath.section == 2 {
@@ -106,7 +106,6 @@ extension MainViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection5TableViewCell.className, for: indexPath) as? Collection5TableViewCell else { return UITableViewCell() }
-            cell.configureCell()
             return cell
         }
     }
@@ -137,5 +136,6 @@ extension MainViewController: UITableViewDataSource {
             return 0
         }
     }
+    
 }
 

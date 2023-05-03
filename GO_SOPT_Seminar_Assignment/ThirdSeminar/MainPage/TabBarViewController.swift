@@ -17,10 +17,6 @@ final class TabBarViewController: UITabBarController {
         
         tabBar.barTintColor = UIColor.black // TabBar 의 배경 색
         tabBar.isTranslucent = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         let firstViewController = UINavigationController(rootViewController: NavigationViewController())
         firstViewController.tabBarItem = UITabBarItem(title: "", image: .home.withRenderingMode(.alwaysOriginal), selectedImage: .homeSelected.withRenderingMode(.alwaysOriginal))

@@ -88,4 +88,5 @@ final class MainPageContents2CollectionViewCell: UICollectionViewCell {
         collectionViewProgram.text = mainPage.program
         collectionViewRate.text = mainPage.rating
     }
+    
 }
