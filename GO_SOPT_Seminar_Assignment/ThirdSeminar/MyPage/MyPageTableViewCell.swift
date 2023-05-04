@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TableView의 cell 설정
 final class MyPageTableViewCell: UITableViewCell {
     
     private let infoLabel = UILabel()

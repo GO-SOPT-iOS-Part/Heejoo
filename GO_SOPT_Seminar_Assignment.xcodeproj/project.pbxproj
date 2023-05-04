@@ -341,6 +341,9 @@
 			isa = PBXGroup;
 			children = (
 				2A820C1D2A012AA1006C58F9 /* Structs */,
+				2A820C202A019898006C58F9 /* TabBarViewController.swift */,
+				2A820C172A002E83006C58F9 /* NavigationViewController.swift */,
+				2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */,
 				2AD4367329F6A73F0088F2E5 /* MainViewController.swift */,
 				2AD4369F29FBB3220088F2E5 /* CollectionTableViewCell.swift */,
 				2AD436A929FD2B5E0088F2E5 /* MainPageHeaderCollectionViewCell.swift */,
@@ -351,9 +354,6 @@
 				2AD436A529FBB4450088F2E5 /* Collection4TableViewCell.swift */,
 				2AD436B729FD9C140088F2E5 /* Section2TableViewCell.swift */,
 				2AD436A729FBB4510088F2E5 /* Collection5TableViewCell.swift */,
-				2A820C172A002E83006C58F9 /* NavigationViewController.swift */,
-				2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */,
-				2A820C202A019898006C58F9 /* TabBarViewController.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";

@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - section 1의 footerView 설정
+
 final class MyPageTableViewFooter: UITableViewHeaderFooterView {
 
     private let logOutButton = UIButton()

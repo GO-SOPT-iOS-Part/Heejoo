@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TableView section 1의 row 0, 3, section 3의 cell안의 CollectionView의 cell 설정
+
 final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         
     private let collectionViewItem = UIImageView()

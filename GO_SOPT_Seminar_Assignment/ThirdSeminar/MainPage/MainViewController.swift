@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - 프로토콜 선언
+
 protocol IsScrolled: AnyObject {
     func hide()
     func notHide()
@@ -20,13 +22,20 @@ final class MainViewController: BaseViewController {
     weak var delegate: IsScrolled?
     var isScrolled = false
     
+    // MARK: - mainPageView를 UITableView()로
+    
     private let mainPageAllView = UITableView()
+    
+    // MARK: - 스크롤 되면 NavigationViewController의 collectionView 배경을 설정
+    
     private let backGroundView = UIView().then {
         $0.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 0.8)
         $0.isHidden = true
     }
 
     private let dummy = MainPage.dummy()
+
+    // MARK: - setStyle()
     
     override func setStyle() {
         
@@ -38,6 +47,8 @@ final class MainViewController: BaseViewController {
             setRegister()
         }
     }
+    
+    // MARK: - setLayout()
     
     override func setLayout() {
         
@@ -53,6 +64,8 @@ final class MainViewController: BaseViewController {
         }
     }
     
+    // MARK: - setRegister()
+    
     func setRegister() {
         mainPageAllView.register(CollectionTableViewCell.self, forCellReuseIdentifier:  CollectionTableViewCell.className)
         mainPageAllView.register(Collection2TableViewCell.self, forCellReuseIdentifier:  Collection2TableViewCell.className)
@@ -63,6 +76,8 @@ final class MainViewController: BaseViewController {
         
     }
 }
+
+// MARK: - 스크롤 인식 시
 
 extension MainViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -79,6 +94,8 @@ extension MainViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension MainViewController: UITableViewDataSource {
     

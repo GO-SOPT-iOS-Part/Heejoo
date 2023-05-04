@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - section 1의 headerView 설정
+
 final class MyPageTableViewHeader2: UITableViewHeaderFooterView {
     
     private let bar = UIButton()

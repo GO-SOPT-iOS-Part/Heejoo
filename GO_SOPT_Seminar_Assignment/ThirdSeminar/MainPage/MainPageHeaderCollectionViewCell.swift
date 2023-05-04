@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TableView section 0의 cell안의 CollectionView의 cell 설정
+
 final class MainPageHeaderCollectionViewCell: UICollectionViewCell {
     
     private let headerImage = UIImageView()

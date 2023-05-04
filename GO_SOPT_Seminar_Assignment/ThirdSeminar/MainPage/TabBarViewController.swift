@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TabBar
+
 final class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
@@ -30,8 +32,12 @@ final class TabBarViewController: UITabBarController {
             $0.image = .recordView
         }
         
+        // MARK: - firstViewController
+        
         let firstViewController = UINavigationController(rootViewController: NavigationViewController())
         firstViewController.tabBarItem = UITabBarItem(title: "", image: .home.withRenderingMode(.alwaysOriginal), selectedImage: .homeSelected.withRenderingMode(.alwaysOriginal))
+        
+        // MARK: - secondViewController
         
         let secondViewController = UIViewController()
         secondViewController.tabBarItem = UITabBarItem(title: "", image: .open.withRenderingMode(.alwaysOriginal), selectedImage: .openSelected.withRenderingMode(.alwaysOriginal))
@@ -40,6 +46,8 @@ final class TabBarViewController: UITabBarController {
             $0.edges.equalToSuperview()
         }
         
+        // MARK: - ThirdViewController
+        
         let thirdViewController = UIViewController()
         thirdViewController.tabBarItem = UITabBarItem(title: "", image: .search.withRenderingMode(.alwaysOriginal), selectedImage: .searchSelected.withRenderingMode(.alwaysOriginal))
         thirdViewController.view.addSubview(searchView)
@@ -47,6 +55,8 @@ final class TabBarViewController: UITabBarController {
             $0.top.equalToSuperview().inset(40)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        // MARK: - FourthViewController
         
         let fourthViewController = UIViewController()
         fourthViewController.tabBarItem = UITabBarItem(title: "", image: .record.withRenderingMode(.alwaysOriginal), selectedImage: .recordSelected.withRenderingMode(.alwaysOriginal))
@@ -61,6 +71,8 @@ final class TabBarViewController: UITabBarController {
                                 thirdViewController,
                                 fourthViewController]
     }
+    
+    // MARK: - TabBar height 조절
     
     override func viewDidLayoutSubviews() {
                 super.viewDidLayoutSubviews()

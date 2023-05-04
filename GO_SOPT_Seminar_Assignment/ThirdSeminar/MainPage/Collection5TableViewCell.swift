@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TableView section 3의 cell 설정
+
 final class Collection5TableViewCell: UITableViewCell {
     
     private let dummy = MainPage.dummy()

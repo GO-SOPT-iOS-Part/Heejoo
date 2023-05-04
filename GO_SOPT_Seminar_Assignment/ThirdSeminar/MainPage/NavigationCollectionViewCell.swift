@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - collectionViewCell 설정
+
 final class NavigationCollectionViewCell: UICollectionViewCell {
         
     private let navigationLabel = UILabel()

@@ -10,23 +10,30 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - 마이페이지 뷰컨
 
 final class MyPageViewController: BaseViewController {
+    
+    // MARK: - 마이페이지 안에 UITableView를 넣어 전체가 스크롤 되게 함
     
     private let myPageAllView = UITableView(frame: .zero, style: .grouped)
     
     private let dummy1 = MyPage.dummy1()
     private let dummy2 = MyPage.dummy2()
     
+    // MARK: - navigationBar에 넣을 아이템들
     private let backButton = UIButton()
     private let alarmButton = UIButton()
     private let settingButton = UIButton()
     
+    // MARK: - view가 나타날 때 navigationBar 설정
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
         setNavigationBar()
     }
+    
+    // MARK: - setStyle()
     
     override func setStyle() {
         
@@ -38,6 +45,8 @@ final class MyPageViewController: BaseViewController {
             setRegister()
         }
     }
+    
+    // MARK: - setLayout()
     
     override func setLayout() {
         
@@ -86,6 +95,8 @@ final class MyPageViewController: BaseViewController {
         navigationItem.rightBarButtonItem = rightStackBarButtonItem
     }
     
+    // MARK: - setRegister()
+    
     func setRegister() {
         myPageAllView.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.className)
         myPageAllView.register(MyPageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader.className)
@@ -99,6 +110,8 @@ final class MyPageViewController: BaseViewController {
     }
     
 }
+
+// MARK: - TableView 설정
 
 extension MyPageViewController: UITableViewDelegate {}
 
@@ -125,7 +138,6 @@ extension MyPageViewController: UITableViewDataSource {
         return section == 1 ? 205 : 0
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? dummy1.count : dummy2.count
     }
@@ -139,9 +151,7 @@ extension MyPageViewController: UITableViewDataSource {
         } else {
             cell.configureCell(dummy2[indexPath.row])
         }
-        
         return cell
-        
     }
     
 }

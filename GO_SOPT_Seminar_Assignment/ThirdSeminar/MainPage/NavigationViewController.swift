@@ -10,34 +10,46 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - 여기서 PageViewController와 collectionView 다룸
+
 final class NavigationViewController: BaseViewController {
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        currentPage = 0
-    }
-    
     private let dummy = Navigation.dummy()
-        
+    
+    // MARK: - currentPage 넘겨주는 함수
+    
     private var currentPage: Int = 0 {
         didSet {
             bind(oldValue: oldValue, newValue: currentPage)
         }
     }
     
+    // MARK: - 뷰 나타날 때 currentPage 0으로
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        currentPage = 0
+    }
+    
+    // MARK: - collectionView 동작 설정
+    
     var isSelected: Int? {
         didSet {
             guard let isSelected else { return }
             collectionView.selectItem(at: IndexPath(item: isSelected, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? NavigationCollectionViewCell else { return }
             
+            // MARK: - menuline 동적으로 크기 설정
+            
+            guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? NavigationCollectionViewCell else { return }
             
             menuLine.snp.remakeConstraints {
                 $0.bottom.equalTo(collectionView.snp.bottom)
-                $0.leading.equalTo(cell.snp.leading).offset(-3)
-                $0.trailing.equalTo(cell.snp.trailing).offset(5)
+                $0.leading.equalTo(cell.snp.leading).offset(-1)
+                $0.trailing.equalTo(cell.snp.trailing).offset(1)
                 $0.height.equalTo(3)
             }
+            
+            // MARK: - animate
             
             UIView.animate(withDuration: 0.3) {
                 self.menuLine.layoutIfNeeded()
@@ -46,6 +58,7 @@ final class NavigationViewController: BaseViewController {
         }
     }
     
+    // MARK: - collectionView
     private lazy var collectionView = UICollectionView(frame: .zero,
                                                        collectionViewLayout: flowLayout)
     private let flowLayout = UICollectionViewFlowLayout()
@@ -54,29 +67,30 @@ final class NavigationViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
+    // MARK: - collectionView 보다 위에 위치하는 객체들
+    
     private let tvingTitle = UIImageView()
     private let wifi = UIImageView()
     private let goToMyPageButton = UIButton()
     
+    // MARK: - 뷰컨에 집어넣을 이미지들 (그냥 이쁘게 하려고)
     private let liveImage = UIImageView().then {
         $0.image = .liveImage
     }
-    
     private let tvImage = UIImageView().then {
         $0.image = .tvImage
     }
-    
     private let movieImage = UIImageView().then {
         $0.image = .movieImage
     }
-    
     private let paraImage = UIImageView().then {
         $0.image = .paraImage
     }
-    
     private let kidsImage = UIImageView().then {
         $0.image = .kidsImage
     }
+    
+    // MARK: - collectionView의 cell을 클릭하면 나오는 각 뷰컨
     
     private lazy var vc1 =  UIViewController().then {
         $0.view.backgroundColor = .black
@@ -99,27 +113,33 @@ final class NavigationViewController: BaseViewController {
         $0.view.addSubviews(kidsImage)
     }
     
+    // MARK: - 뷰컨 배열 만들어주기
+    
     private lazy var dataViewControllers: [UIViewController] = {
         let mainViewController = MainViewController()
         mainViewController.delegate = self
         return [mainViewController, vc1, vc2, vc3, vc4, vc5]
     }()
     
+    // MARK: - pageViewController 선언
+    
     private lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         return vc
     }()
     
+    // MARK: - pageViewController의 동작 설정
+    
     private func bind(oldValue: Int, newValue: Int) {
-        
-        // collectionView 에서 선택한 경우
         let direction: UIPageViewController.NavigationDirection = oldValue < newValue ? .forward : .reverse
         pageViewController.setViewControllers([dataViewControllers[currentPage]], direction: direction, animated: true, completion: nil)
         self.isSelected = newValue
     }
     
+    
+    // MARK: - setStyle()
+    
     override func setStyle() {
-        
         wifi.do {
             $0.image = .wifi
         }
@@ -151,6 +171,8 @@ final class NavigationViewController: BaseViewController {
         }
         
     }
+    
+    // MARK: - setLayout()
     
     override func setLayout() {
         addChild(pageViewController)
@@ -225,9 +247,13 @@ final class NavigationViewController: BaseViewController {
         }
     }
     
+    // MARK: - setTarget()
+    
     override func setTarget() {
         goToMyPageButton.addTarget(self, action: #selector(gotoMyPageButtonClicked), for: .touchUpInside)
     }
+    
+    // MARK: - setDelegate()
     
     override func setDelegate() {
         pageViewController.dataSource = self
@@ -236,6 +262,8 @@ final class NavigationViewController: BaseViewController {
         collectionView.delegate = self
     }
     
+    // MARK: - 마이페이지 버튼 클릭했을 때
+    
     @objc
     func gotoMyPageButtonClicked() {
         let gotoMyPageViewController = MyPageViewController()
@@ -243,6 +271,8 @@ final class NavigationViewController: BaseViewController {
     }
     
 }
+
+// MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
 
 extension NavigationViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
@@ -270,10 +300,11 @@ extension NavigationViewController: UIPageViewControllerDataSource, UIPageViewCo
         currentPage = currentIndex
     }
     
-    
 }
 
-extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+
+extension NavigationViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
@@ -292,7 +323,7 @@ extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize = NSString(string: dummy[indexPath.row].navigation).boundingRect(
-            with: CGSize(width: 100, height: CGFloat.greatestFiniteMagnitude),
+            with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)
@@ -302,6 +333,8 @@ extension NavigationViewController: UICollectionViewDelegate, UICollectionViewDa
         return CGSize(width: cellSize.width + 5, height: collectionView.frame.height)
     }
 }
+
+// MARK: - IsScrolled 프로토콜 상속
 
 extension NavigationViewController: IsScrolled {
     func hide() {

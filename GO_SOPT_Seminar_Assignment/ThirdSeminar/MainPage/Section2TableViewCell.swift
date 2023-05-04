@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - TableView section 2의 cell 설정
+
 final class Section2TableViewCell: UITableViewCell {
 
     private let linkButton = UIButton()

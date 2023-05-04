@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - section 0의 headerView 설정
 final class MyPageTableViewHeader: UITableViewHeaderFooterView {
         
     let myUser:String = UserDefaults.standard.string(forKey: "userID")!
