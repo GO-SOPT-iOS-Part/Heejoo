@@ -346,6 +346,7 @@ private extension FirstViewController_2nd_Assignment {
         }
         let thirdViewController = ThirdViewController_2nd_Assignment()
         thirdViewController.text = text
+        UserDefaults.standard.set(text, forKey: "userID")
         self.navigationController?.pushViewController(thirdViewController, animated: true)
     }
     

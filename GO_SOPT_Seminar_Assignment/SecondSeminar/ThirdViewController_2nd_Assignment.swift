@@ -99,6 +99,7 @@ private extension ThirdViewController_2nd_Assignment {
     
     @objc
     func mainButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        let gotoMainViewController = MainViewController()
+        self.navigationController?.pushViewController(gotoMainViewController, animated: true)
     }
 }
