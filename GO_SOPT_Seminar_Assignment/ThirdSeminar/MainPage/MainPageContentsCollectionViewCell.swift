@@ -32,6 +32,9 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
     }
     
     func setStyle() {
+        collectionViewItem.do {
+            $0.makeCornerRound(radius: 3)
+        }
         collectionViewItemName.do {
             $0.font = .tvingMedium(ofSize: 10)
             $0.textColor = .tvingGray3
@@ -48,6 +51,7 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         }
         collectionViewItemName.snp.makeConstraints {
             $0.top.equalTo(collectionViewItem.snp.bottom).offset(3)
+            $0.width.equalTo(98)
         }
         
     }
