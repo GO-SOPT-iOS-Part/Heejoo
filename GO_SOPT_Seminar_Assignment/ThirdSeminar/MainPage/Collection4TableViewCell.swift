@@ -14,7 +14,11 @@ import Then
 
 final class Collection4TableViewCell: UITableViewCell {
     
-    private let dummy = MainPage.dummy()
+    var networkResult: [Movie] = [] {
+           didSet {
+              self.collectionView.reloadData()
+          }
+    }
 
     private let titleLabel = UILabel()
     private let entireLabel = UILabel()
@@ -65,7 +69,7 @@ final class Collection4TableViewCell: UITableViewCell {
             $0.itemSize = CGSize(width: 98, height: 160)
             $0.scrollDirection = .horizontal
         }
-
+        
         separatorInset.left = 0
         selectionStyle = .none
         backgroundColor = .black
@@ -97,15 +101,16 @@ final class Collection4TableViewCell: UITableViewCell {
 
 extension Collection4TableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummy.count
+        return networkResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.configureCell(dummy[indexPath.item])
-
+        let movie = networkResult[indexPath.item]
+        cell.configureCell(movie: movie)
+        
         return cell
     }
 }

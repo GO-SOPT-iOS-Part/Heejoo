@@ -18,6 +18,18 @@ protocol IsScrolled: AnyObject {
 }
 
 final class MainViewController: BaseViewController {
+
+    private var networkResult: [Movie] = [] {
+        didSet {
+            self.mainPageAllView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        setStyle()
+        setLayout()
+        getMovie()
+    }
         
     weak var delegate: IsScrolled?
     var isScrolled = false
@@ -127,12 +139,14 @@ extension MainViewController: UITableViewDataSource {
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection2TableViewCell.className, for: indexPath) as? Collection2TableViewCell else { return UITableViewCell() }
+                cell.networkResult = networkResult
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection3TableViewCell.className, for: indexPath) as? Collection3TableViewCell else { return UITableViewCell() }
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection4TableViewCell.className, for: indexPath) as? Collection4TableViewCell else { return UITableViewCell() }
+                cell.networkResult = networkResult
                 return cell
             }
         } else if indexPath.section == 2 {
@@ -140,6 +154,7 @@ extension MainViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection5TableViewCell.className, for: indexPath) as? Collection5TableViewCell else { return UITableViewCell() }
+            cell.networkResult = networkResult
             return cell
         }
     }
@@ -171,5 +186,33 @@ extension MainViewController: UITableViewDataSource {
         }
     }
     
+}
+
+extension MainViewController {
+    func getMovie() {
+        MovieRequest.shared.getMovie() { response in
+            switch response {
+            case .success(let data):
+                guard let data = data as? MovieResponse else { return }
+
+                let data1 = Movie(url: data.results[0].posterPath, title: data.results[0].title)
+                let data2 = Movie(url: data.results[1].posterPath, title: data.results[1].title)
+                let data3 = Movie(url: data.results[2].posterPath, title: data.results[2].title)
+                let data4 = Movie(url: data.results[3].posterPath, title: data.results[3].title)
+                let data5 = Movie(url: data.results[4].posterPath, title: data.results[4].title)
+                let data6 = Movie(url: data.results[5].posterPath, title: data.results[5].title)
+                let data7 = Movie(url: data.results[6].posterPath, title: data.results[6].title)
+                let data8 = Movie(url: data.results[7].posterPath, title: data.results[7].title)
+                
+                self.networkResult = [data1, data2, data3, data4, data5, data6, data7, data8]
+            
+                dump(data)
+                
+            default:
+                print("failed")
+                return
+            }
+        }
+    }
 }
 

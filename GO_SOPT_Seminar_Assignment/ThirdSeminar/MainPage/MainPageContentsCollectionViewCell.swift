@@ -10,13 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+import Kingfisher
+
 // MARK: - TableView section 1의 row 0, 3, section 3의 cell안의 CollectionView의 cell 설정
 
 final class MainPageContentsCollectionViewCell: UICollectionViewCell {
-        
+    
     private let collectionViewItem = UIImageView()
     private let collectionViewItemName = UILabel()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,9 +51,11 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         }
         
     }
-
-    func configureCell(_ mainPage: MainPage) {
-        collectionViewItem.image = mainPage.image
-        collectionViewItemName.text = mainPage.program
+    
+    func configureCell(movie: Movie) {
+        collectionViewItem.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/" + movie.url))
+        collectionViewItemName.text = movie.title
     }
+    
 }
+

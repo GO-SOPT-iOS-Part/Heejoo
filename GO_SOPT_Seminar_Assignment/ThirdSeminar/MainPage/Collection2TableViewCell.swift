@@ -14,8 +14,13 @@ import Then
 
 final class Collection2TableViewCell: UITableViewCell {
     
-    private let dummy = MainPage.dummy()
-
+    var networkResult: [Movie] = [] {
+           didSet {
+              self.collectionView.reloadData()
+          }
+    }
+    
+    
     private let titleLabel = UILabel()
     private let entireLabel = UILabel()
     private let entireButton = UIButton()
@@ -65,7 +70,7 @@ final class Collection2TableViewCell: UITableViewCell {
             $0.itemSize = CGSize(width: 98, height: 160)
             $0.scrollDirection = .horizontal
         }
-
+        
         separatorInset.left = 0
         selectionStyle = .none
         backgroundColor = .black
@@ -93,19 +98,23 @@ final class Collection2TableViewCell: UITableViewCell {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
-
+    
 }
 
 extension Collection2TableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummy.count
+        
+        return networkResult.count
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
         
-            cell.configureCell(dummy[indexPath.item])
+        let movie = networkResult[indexPath.item]
+        cell.configureCell(movie: movie)
         
-            return cell
+        return cell
     }
 }
+

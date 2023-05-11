@@ -32,6 +32,12 @@
 		2A820C1C2A010E22006C58F9 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C1B2A010E22006C58F9 /* Navigation.swift */; };
 		2A820C212A019898006C58F9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C202A019898006C58F9 /* TabBarViewController.swift */; };
 		2A820C332A0AC714006C58F9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2A820C322A0AC714006C58F9 /* Alamofire */; };
+		2A820C362A0AC9A7006C58F9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C352A0AC9A7006C58F9 /* Config.swift */; };
+		2A820C3A2A0AC9FC006C58F9 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C392A0AC9FC006C58F9 /* NetworkResult.swift */; };
+		2A820C3C2A0BE8B6006C58F9 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C3B2A0BE8B6006C58F9 /* MovieResponse.swift */; };
+		2A820C3E2A0BE92A006C58F9 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C3D2A0BE92A006C58F9 /* MovieRequest.swift */; };
+		2A820C412A0C05D3006C58F9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A820C402A0C05D3006C58F9 /* Kingfisher */; };
+		2A820C442A0D1339006C58F9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A820C432A0D1339006C58F9 /* Movie.swift */; };
 		2A92620529E4622D006AC370 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620429E4622D006AC370 /* UITextField+.swift */; };
 		2A92620729E4624C006AC370 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A92620629E4624C006AC370 /* UIButton+.swift */; };
 		2AD4367429F6A73F0088F2E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4367329F6A73F0088F2E5 /* MainViewController.swift */; };
@@ -117,6 +123,11 @@
 		2A820C192A0100AE006C58F9 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A820C1B2A010E22006C58F9 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		2A820C202A019898006C58F9 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		2A820C352A0AC9A7006C58F9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2A820C392A0AC9FC006C58F9 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		2A820C3B2A0BE8B6006C58F9 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
+		2A820C3D2A0BE92A006C58F9 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
+		2A820C432A0D1339006C58F9 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		2A92620429E4622D006AC370 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		2A92620629E4624C006AC370 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		2AD4367329F6A73F0088F2E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +179,7 @@
 				2A820C332A0AC714006C58F9 /* Alamofire in Frameworks */,
 				2A1758F829E3CE990077399D /* Then in Frameworks */,
 				2A1758F529E3CE8A0077399D /* SnapKit in Frameworks */,
+				2A820C412A0C05D3006C58F9 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +258,7 @@
 				2A1758ED29E3CE0F0077399D /* SecondSeminar_practice */,
 				2A92620929E4637E006AC370 /* SecondSeminar */,
 				2AD4367229F6A7060088F2E5 /* ThirdSeminar */,
+				2A820C342A0AC98A006C58F9 /* FourthSeminar */,
 				2A30B5A029DFCDCD002D6760 /* Main.storyboard */,
 				2A30B5A329DFCDCF002D6760 /* Assets.xcassets */,
 				2A30B5A529DFCDCF002D6760 /* LaunchScreen.storyboard */,
@@ -302,8 +315,20 @@
 				2AD436B129FD720F0088F2E5 /* MainPage2.swift */,
 				2A820C1329FED621006C58F9 /* MainPagePhoto.swift */,
 				2A820C1B2A010E22006C58F9 /* Navigation.swift */,
+				2A820C432A0D1339006C58F9 /* Movie.swift */,
 			);
 			path = Structs;
+			sourceTree = "<group>";
+		};
+		2A820C342A0AC98A006C58F9 /* FourthSeminar */ = {
+			isa = PBXGroup;
+			children = (
+				2A820C352A0AC9A7006C58F9 /* Config.swift */,
+				2A820C392A0AC9FC006C58F9 /* NetworkResult.swift */,
+				2A820C3B2A0BE8B6006C58F9 /* MovieResponse.swift */,
+				2A820C3D2A0BE92A006C58F9 /* MovieRequest.swift */,
+			);
+			path = FourthSeminar;
 			sourceTree = "<group>";
 		};
 		2A92620929E4637E006AC370 /* SecondSeminar */ = {
@@ -392,6 +417,7 @@
 				2A1758F429E3CE8A0077399D /* SnapKit */,
 				2A1758F729E3CE990077399D /* Then */,
 				2A820C322A0AC714006C58F9 /* Alamofire */,
+				2A820C402A0C05D3006C58F9 /* Kingfisher */,
 			);
 			productName = GO_SOPT_Seminar_Assignment;
 			productReference = 2A30B59729DFCDCD002D6760 /* GO_SOPT_Seminar_Assignment.app */;
@@ -470,6 +496,7 @@
 				2A1758F329E3CE8A0077399D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				2A1758F629E3CE990077399D /* XCRemoteSwiftPackageReference "Then" */,
 				2A820C312A0AC714006C58F9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2A820C3F2A0C05D3006C58F9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 2A30B59829DFCDCD002D6760 /* Products */;
 			projectDirPath = "";
@@ -544,11 +571,15 @@
 				2AD4369029F98F090088F2E5 /* MyPageTalbleViewHeader2.swift in Sources */,
 				2AD4367429F6A73F0088F2E5 /* MainViewController.swift in Sources */,
 				2AFBBDF029E5940100A4245E /* UIColor+.swift in Sources */,
+				2A820C3E2A0BE92A006C58F9 /* MovieRequest.swift in Sources */,
 				2AD436AC29FD4A500088F2E5 /* MainPageContentsCollectionViewCell.swift in Sources */,
+				2A820C3C2A0BE8B6006C58F9 /* MovieResponse.swift in Sources */,
 				2AD4368A29F963140088F2E5 /* NSObject+.swift in Sources */,
 				2A820C1429FED621006C58F9 /* MainPagePhoto.swift in Sources */,
+				2A820C3A2A0AC9FC006C58F9 /* NetworkResult.swift in Sources */,
 				2AD436B829FD9C140088F2E5 /* Section2TableViewCell.swift in Sources */,
 				2A30B59B29DFCDCD002D6760 /* AppDelegate.swift in Sources */,
+				2A820C442A0D1339006C58F9 /* Movie.swift in Sources */,
 				2A30B5D029DFCE90002D6760 /* SecondViewController_1st_Assignment.swift in Sources */,
 				2AD4367E29F950410088F2E5 /* MyPage.swift in Sources */,
 				2A820C212A019898006C58F9 /* TabBarViewController.swift in Sources */,
@@ -563,6 +594,7 @@
 				2A30B59D29DFCDCD002D6760 /* SceneDelegate.swift in Sources */,
 				2AD4367629F8CF0E0088F2E5 /* BaseView.swift in Sources */,
 				2AD436AA29FD2B5E0088F2E5 /* MainPageHeaderCollectionViewCell.swift in Sources */,
+				2A820C362A0AC9A7006C58F9 /* Config.swift in Sources */,
 				2AD4368829F962710088F2E5 /* UIImage+.swift in Sources */,
 				2AD4368E29F985D00088F2E5 /* MyPageTableViewFooter.swift in Sources */,
 				2A820C1A2A0100AE006C58F9 /* NavigationCollectionViewCell.swift in Sources */,
@@ -741,9 +773,10 @@
 		2A30B5C229DFCDCF002D6760 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = 77aa93f053209eaae626e7313f028d87;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://api.themoviedb.org/3";
+				BASE_URL = "https://api.themoviedb.org/3/movie/";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 349HWJV2J8;
@@ -771,9 +804,10 @@
 		2A30B5C329DFCDCF002D6760 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = 77aa93f053209eaae626e7313f028d87;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://api.themoviedb.org/3";
+				BASE_URL = "https://api.themoviedb.org/3/movie/";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 349HWJV2J8;
@@ -948,6 +982,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		2A820C3F2A0C05D3006C58F9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -970,6 +1012,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A820C312A0AC714006C58F9 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		2A820C402A0C05D3006C58F9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A820C3F2A0C05D3006C58F9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
