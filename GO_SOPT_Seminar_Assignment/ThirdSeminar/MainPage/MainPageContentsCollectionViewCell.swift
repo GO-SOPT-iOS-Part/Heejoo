@@ -52,6 +52,7 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         collectionViewItemName.snp.makeConstraints {
             $0.top.equalTo(collectionViewItem.snp.bottom).offset(3)
             $0.width.equalTo(98)
+            $0.height.equalTo(20)
         }
         
     }
