@@ -57,6 +57,8 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         
     }
     
+    // MARK: - 구조체 이용하여 collectionView의 이미지, 타이틀 설정해주기
+    
     func configureCell(movie: Movie) {
         collectionViewItem.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/" + movie.url))
         collectionViewItemName.text = movie.title

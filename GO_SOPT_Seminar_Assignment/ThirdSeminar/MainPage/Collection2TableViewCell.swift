@@ -20,7 +20,6 @@ final class Collection2TableViewCell: UITableViewCell {
           }
     }
     
-    
     private let titleLabel = UILabel()
     private let entireLabel = UILabel()
     private let entireButton = UIButton()
@@ -112,7 +111,7 @@ extension Collection2TableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:MainPageContentsCollectionViewCell.className, for: indexPath) as? MainPageContentsCollectionViewCell else { return UICollectionViewCell() }
         
         let movie = networkResult[indexPath.item]
-        cell.configureCell(movie: movie)
+        cell.configureCell(movie: movie) // CollectionViewCell에 data 뿌려주기
         
         return cell
     }

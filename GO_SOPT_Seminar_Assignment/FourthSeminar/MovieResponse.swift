@@ -12,7 +12,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - MovieResponse
 struct MovieResponse: Codable {
     let dates: Dates
     let page: Int

@@ -18,19 +18,23 @@ protocol IsScrolled: AnyObject {
 }
 
 final class MainViewController: BaseViewController {
-
+    
+    //MARK: - 구조체에 data 담아주기
+    
     private var networkResult: [Movie] = [] {
         didSet {
             self.mainPageAllView.reloadData()
         }
     }
     
+    //    private let dummy = MainPage.dummy()
+    
     override func viewDidLoad() {
         setStyle()
         setLayout()
         getMovie()
     }
-        
+    
     weak var delegate: IsScrolled?
     var isScrolled = false
     
@@ -44,9 +48,7 @@ final class MainViewController: BaseViewController {
         $0.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 0.8)
         $0.isHidden = true
     }
-
-    private let dummy = MainPage.dummy()
-
+    
     // MARK: - setStyle()
     
     override func setStyle() {
@@ -139,7 +141,7 @@ extension MainViewController: UITableViewDataSource {
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection2TableViewCell.className, for: indexPath) as? Collection2TableViewCell else { return UITableViewCell() }
-                cell.networkResult = networkResult
+                cell.networkResult = networkResult // TableViewCell의 data == ViewControllerdml data
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: Collection3TableViewCell.className, for: indexPath) as? Collection3TableViewCell else { return UITableViewCell() }
@@ -188,24 +190,20 @@ extension MainViewController: UITableViewDataSource {
     
 }
 
+// MARK: - API CALL
+
 extension MainViewController {
     func getMovie() {
         MovieRequest.shared.getMovie() { response in
             switch response {
             case .success(let data):
                 guard let data = data as? MovieResponse else { return }
-
-                let data1 = Movie(url: data.results[0].posterPath, title: data.results[0].title)
-                let data2 = Movie(url: data.results[1].posterPath, title: data.results[1].title)
-                let data3 = Movie(url: data.results[2].posterPath, title: data.results[2].title)
-                let data4 = Movie(url: data.results[3].posterPath, title: data.results[3].title)
-                let data5 = Movie(url: data.results[4].posterPath, title: data.results[4].title)
-                let data6 = Movie(url: data.results[5].posterPath, title: data.results[5].title)
-                let data7 = Movie(url: data.results[6].posterPath, title: data.results[6].title)
-                let data8 = Movie(url: data.results[7].posterPath, title: data.results[7].title)
                 
-                self.networkResult = [data1, data2, data3, data4, data5, data6, data7, data8]
-            
+                for i in 0...(data.results.count - 1) {
+                    let appendData = Movie(url: data.results[i].posterPath, title: data.results[i].title)
+                    self.networkResult.append(appendData)
+                } // results의 개수만큼 반복하면서 data를 append 해줌
+                
                 dump(data)
                 
             default:
