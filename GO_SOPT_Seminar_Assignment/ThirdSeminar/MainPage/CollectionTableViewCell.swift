@@ -13,7 +13,7 @@ import Then
 // MARK: - TableView section 0의 cell 설정
 
 final class CollectionTableViewCell: UITableViewCell {
-            
+                
     private let dummy = MainPagePhoto.dummy()
     
     // MARK: - TableViewCell안에서 collectionView 생성
@@ -110,7 +110,5 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
 }
-
-
 
 

@@ -10,13 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+import Kingfisher
+
 // MARK: - TableView section 1의 row 0, 3, section 3의 cell안의 CollectionView의 cell 설정
 
 final class MainPageContentsCollectionViewCell: UICollectionViewCell {
-        
+    
     private let collectionViewItem = UIImageView()
     private let collectionViewItemName = UILabel()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +32,9 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
     }
     
     func setStyle() {
+        collectionViewItem.do {
+            $0.makeCornerRound(radius: 3)
+        }
         collectionViewItemName.do {
             $0.font = .tvingMedium(ofSize: 10)
             $0.textColor = .tvingGray3
@@ -47,12 +51,18 @@ final class MainPageContentsCollectionViewCell: UICollectionViewCell {
         }
         collectionViewItemName.snp.makeConstraints {
             $0.top.equalTo(collectionViewItem.snp.bottom).offset(3)
+            $0.width.equalTo(98)
+            $0.height.equalTo(20)
         }
         
     }
-
-    func configureCell(_ mainPage: MainPage) {
-        collectionViewItem.image = mainPage.image
-        collectionViewItemName.text = mainPage.program
+    
+    // MARK: - 구조체 이용하여 collectionView의 이미지, 타이틀 설정해주기
+    
+    func configureCell(movie: Movie) {
+        collectionViewItem.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/" + movie.url))
+        collectionViewItemName.text = movie.title
     }
+    
 }
+

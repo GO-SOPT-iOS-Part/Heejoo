@@ -15,7 +15,7 @@ import Then
 final class MainPageHeaderCollectionViewCell: UICollectionViewCell {
     
     private let headerImage = UIImageView()
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,3 +42,4 @@ final class MainPageHeaderCollectionViewCell: UICollectionViewCell {
     }
 
 }
+
