@@ -14,13 +14,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
         self.window = UIWindow(windowScene: windowScene)
-        self.window?.rootViewController = TabBarViewController()
+        
+        let tabBarVC = UITabBarController()
+        
+        let vc1 = UINavigationController(rootViewController: CarrotViewController())
+        let vc2 = StarViewController()
+        
+        tabBarVC.setViewControllers([vc1, vc2], animated: false)
+        tabBarVC.modalPresentationStyle = .fullScreen
+        tabBarVC.tabBar.backgroundColor = .white
+        
+        guard let items = tabBarVC.tabBar.items else {return}
+        items[0].image = UIImage(systemName: "house")
+        items[1].image = UIImage(systemName: "star")
+    
+        
+        self.window?.rootViewController = tabBarVC
         self.window?.makeKeyAndVisible()
     }
-    
 }
+
+
+
+
+
+
 
 
 
