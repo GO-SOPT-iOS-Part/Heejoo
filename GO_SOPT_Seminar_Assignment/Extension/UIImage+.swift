@@ -18,7 +18,7 @@ extension UIImage {
     static var tvnjtbc: UIImage {UIImage(named: "tvnjtbc")!}
     static var tvingProfile: UIImage {UIImage(named: "tvingProfile")!}
     static var profileImage: UIImage {UIImage(named: "profileImage")!}
-    static var tvingTitleImage: UIImage {UIImage(named: "tvingTitleImage")!}
+    static var tvingTitleImage: UIImage {UIImage(named: "tvingTitleimage")!}
     static var gotoMyPageButton: UIImage {UIImage(named: "gotoMyPageButton")!}
     static var signal: UIImage {UIImage(named: "signal")!}
     static var harry: UIImage {UIImage(named: "harry")!}
